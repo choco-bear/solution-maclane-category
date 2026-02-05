@@ -46,6 +46,14 @@
 \begin{exercise} % 5
   Find two different functors $T : \Grp \to \Grp$ with object function $T(G) = G$ the identity for every group $G$.
 \end{exercise}
+\begin{solution}
+  Say $\varphi : C_3 \to C_3$ is defined as $[n] \mapsto [2n]$.
+  $\varphi$ is then an involutive automorphism of $C_3$.
+  Define $T(f) = [\varphi \circ] f [\circ \varphi]$, where $[\varphi \circ]$ and $[\circ \varphi]$ denote composition only when they are composable.
+  Then $T$ is a functor $\Grp \to \Grp$ with object function the identity.
+  However, $T$ is different from the identity functor since $T(f) \neq f$ where $f : C_3 \to C_6$ is defined as $[n] \mapsto [2n]$.
+  Therefore, we have found two different functors with the same object function.
+\end{solution}
 
 \section{Natural Transformations} % Section 4.
 
