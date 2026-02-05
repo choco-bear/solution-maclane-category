@@ -1,0 +1,114 @@
+\setcounter{chapter}{0}
+\chapter{Categories, Functors, and Natural Transformations}
+\setcounter{section}{2}
+\section{Functors} % Section 3.
+
+\begin{exercise} % 1
+  Show how each of the following constructions can be regarded as a functor:
+
+  The field of quotients of an integral domain; the Lie algebra of a Lie group.
+\end{exercise}
+
+\begin{exercise} % 2
+  Show that functors $\mathbf{1} \to C$, $\mathbf{2} \to C$, and $\mathbf{3} \to C$ correspond respectively to objects, arrows, and composable pairs of morphisms in $C$.
+\end{exercise}
+
+\begin{exercise} % 3
+  Interpret ``functor'' in the following special types of categories:
+  (a) A functor between two preorders is a function $T$ which is monotonic (i.e., $p \leqq p'$ implies $T p \leqq T p'$).
+  (b) A functor between two groups (one-object categories) is a morphism of groups.
+  (c) If $G$ is a group, a functor $G \to \Set$ is a permutation representation of $G$, while $G \to \Matr{K}$ is a matrix representation of $G$.
+\end{exercise}
+
+\begin{exercise} % 4
+  Prove that there is no functor $\Grp \to \Ab$ sending each group to its center (consider $S_2 \to S_3 \to S_2$, the symmetric groups).
+\end{exercise}
+
+\begin{exercise} % 5
+  Find two different functors $T : \Grp \to \Grp$ with object function $T(G) = G$ the identity for every group $G$.
+\end{exercise}
+
+\section{Natural Transformations} % Section 4.
+
+\begin{exercise} % 1
+  Let $S$ be a fixed set, and $X^S$ the set of all functions $h : S \to X$. Show that $X \mapsto X^S$ is the object function of a functor $\Set \to \Set$, and the evaluation $e_X : X^S \times S \nat X$, defined by $e_X(h, s) = h(s)$, the value of the function $h$ at $s \in S$, is a natural transformation.
+\end{exercise}
+
+\begin{exercise} % 2
+  If $H$ is a fixed group, show that $G \mapsto H \times G$ defines a functor $H \times - : \Grp \to \Grp$, and that each morphism $f : H \to K$ of groups defines a natural transformation $H \times - \nat K \times -$.
+\end{exercise}
+
+\begin{exercise} % 3
+  If $B$ and $C$ are groups (regarded as categories with one object each) and $S,T : B \to C$ are functors (homomorphisms or groups), show that there is a natural transformation $S \nat T$ if and only if $S$ and $T$ are conjugate; i.e., if and only if there is an element $h \in C$ with $Tg = h(Sg)h^{-1}$ for every $g \in B$.
+\end{exercise}
+
+\begin{exercise} % 4
+  For functors $S,T : C \to P$ where $C$ is a category and $P$ a preorder, show that there is a natural transformation $S \nat T$ (which is then unique) if and only if $S c \leqq T c$ for every object $c \in C$.
+\end{exercise}
+
+\begin{exercise} % 5
+  Show that every natural transformation $\tau : S \nat T$ Tdefines a function (also called $\tau$) which sends each arrow $f : c \to c'$ of $C$ to an arrow $\tau f : S c \to T' c$ of $B$ in such a way that $T g \circ \tau f = \tau (g \, f) = \tau g \circ S f$ for all composable pair $\left\langle g, f \right\rangle$.
+  Conversely, show that every such function $\tau$ comes from a unique natural transformation with $\tau_c = \tau(1_c)$.
+  (This gives an ``arrows only'' description of a natural transformation.)
+\end{exercise}
+
+\begin{exercise} % 6
+  Let $F$ be a field. Show that the category of all finite-dimensional vector spaces over $F$ (with morphisms all linear transformations) is equivalent to the category $\Matr{F}$ described in \S2.
+\end{exercise}
+
+\section{Monics, Epis, and Zeros} % Section 5.
+
+\begin{exercise} % 1
+  Find a category with an arrow which is both epi and monic, but not invertible (e.g., dense subset of a topological space).
+\end{exercise}
+
+\begin{exercise} % 2
+  Prove that the composite of monies is monic, and likewise for epis.
+\end{exercise}
+
+\begin{exercise} % 3
+  If a composite $g \circ f$ is monic, so is $f$. Is this true of $g$?
+\end{exercise}
+
+\begin{exercise} % 4
+  Show that the inclusion $\mathbf{Z} \to \mathbf{Q}$ is epi in the category $\Rng$.
+\end{exercise}
+
+\begin{exercise} % 5
+  In $\Grp$ prove that every epi is surjective (Hint.
+    If $\varphi : G \to H$ has image $M$ not $H$, use the factor group $H/M$ if $M$ has index $2$.
+    Otherwise, let $\operatorname{Perm} H$ be the group of all permutations of the set $H$, choose three different cosets $M$, $Mu$ and $Mv$ of $M$, define $\sigma \in \operatorname{Perm} H$ by $\sigma(xu) = xv$, $\sigma(xv) = xu$ for $x \in M$, and $\sigma$ otherwise the identity.
+    Let $\psi : H \to \operatorname{Perm} H$ send each $h$ to left multiplication $\psi_h$ by $h$, while $\psi'_h = \sigma^{-1} \psi_h \sigma$.
+    Then $\psi\varphi = \psi'\varphi$, but $\psi \neq \psi'$
+  ).
+\end{exercise}
+
+\begin{exercise} % 6
+  In $\Set$, show that all idempotents split.
+\end{exercise}
+
+\begin{exercise} % 7
+  An arrow $f : a \to b$ in a category $C$ is \emph{regular} when there exists an arrow $g : b \to a$ such that $f \, g \, f = f$.
+  Show that $f$ is regular if it has either a left or a right inverse, and prove that every arrow in $\Set$ with $a \neq \emptyset$ is regular.
+\end{exercise}
+
+\begin{exercise} % 8
+  Consider the category with objects $\left\langle X, e, t \right\rangle$, where $X$ is a set, $e \in X$, and $t : X \to X$, and with arrows $f : \left\langle X, e, t \right\rangle \to \left\langle X', e', t' \right\rangle$ the functions $f$ on $X$ to $X'$ with $f \, e = e'$ and $f \, t = t' \, f$.
+  Prove that this category has an initial object in which $X$ is the set of natural numbers, $e = 0$, and $t$ is the successor function.
+\end{exercise}
+
+\begin{exercise} % 9
+  If the functor $T : C \to B$ is faithful and $T f$ is monic, prove $f$ monic.
+\end{exercise}
+
+\section{Foundations} % Section 6.
+
+\begin{exercise} % 1
+  Given a universe $U$ and a function $f : I \to b$ with domain $I \in U$ and with every value $f_i$ an element of $U$, for $i \in I$, prove that the usual cartesian product $\prod_i f_i$ is an element of $U$.
+\end{exercise}
+
+\begin{exercise} % 2
+  (a) Given a universe $U$ and a function $f : I \to b$ with domain $I \in U$, show that the usual union $\bigcup_i f_i$ is a set of $U$.
+
+  (b) Show that this one closure property of $U$ may replace condition (v) and the condition $x \in U$ implies $\bigcup x \in U$ in the definition of a universe.
+\end{exercise}
