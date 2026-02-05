@@ -8,6 +8,15 @@
 
   The field of quotients of an integral domain; the Lie algebra of a Lie group.
 \end{exercise}
+\begin{solution}
+  For any integral domain $R$, define $F(R)$ as the field of fractions of $R$.
+  For any ring homomorphism $f: R \to S$ between integral domains, define $F(f): F(R) \to F(S)$ as $\frac{a}{b} \mapsto \frac{f(a)}{f(b)}$ for $a, b \in R$ with $b \neq 0$.
+  This construction preserves composition and identities, thus defining a functor from the category of integral domains to the category of fields.
+
+  For any Lie group $G$, define $\mathrm{Lie}(G)$ as the Lie algebra of $G$.
+  For any Lie group homomorphism $\phi : G \to H$, define $\mathrm{Lie}(\phi) : \mathrm{Lie}(G) \to \mathrm{Lie}(H)$ as the differential of $\phi$ at the identity element.
+  This construction also preserves composition and identities, thus defining a functor from the category of Lie groups to the category of Lie algebras.
+\end{solution}
 
 \begin{exercise} % 2
   Show that functors $\mathbf{1} \to C$, $\mathbf{2} \to C$, and $\mathbf{3} \to C$ correspond respectively to objects, arrows, and composable pairs of arrows in $C$.
