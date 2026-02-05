@@ -1,12 +1,14 @@
 %%             theoremstyle                %%
+\makeatletter
 \newtheoremstyle{exercise}%   Name
   {}%                         Space above, empty = `usual value'
-  {2em}%                      Space below
+  {}%                      Space below
   {%                          Body font
     \upshape
     \setlength{\parskip}{0pt}
     \setlength{\parindent}{0em}
     \setlength{\leftskip}{1.7em}
+    \addtolength{\@totalleftmargin}{1.7em}
   }%
   {}%                         Indent amount (empty = no indent, \parindent = para indent)
   {\bfseries}%                Thm head font
@@ -17,6 +19,7 @@
       \makebox[1.7em][r]{#2.\hspace{2mm}}%
     }%
   }%
+\makeatother
 
 \theoremstyle{exercise}
 
@@ -31,7 +34,7 @@
   \trivlist 
   \item\relax {
     \itshape #1\@addpunct{.}
-  }\hspace\labelsep\ignorespaces \setlength{\parindent}{0pt}\par
+  }\hspace\labelsep\ignorespaces \setlength{\parindent}{1em} \par
 }{% 
   \popQED\endtrivlist\@endpefalse 
 } 

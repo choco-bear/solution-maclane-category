@@ -35,8 +35,8 @@
 
 \geometry{
   a4paper,
-  left=20mm,
-  right=20mm
+  left=30mm,
+  right=30mm
 }
 
 \tikzcdset{
@@ -79,3 +79,15 @@
   {\thesection.}               % Section head spec
   {2mm}                        % Distance between the number and the title (empty = no space)
   {}                           % Code added before the title (empty = none)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  layout                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\binoppenalty=10000%                  Prevent line breaks after binary operators (e.g. +, -, etc.)
+\relpenalty=10000%                    Prevent line breaks after relational operators (e.g. =, <, >, etc.)
+\setlength{\emergencystretch}{3em}%   Allow LaTeX to stretch lines a bit more to avoid overfull hboxes
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
