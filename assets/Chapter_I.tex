@@ -32,6 +32,16 @@
 \begin{exercise} % 4
   Prove that there is no functor $\Grp \to \Ab$ sending each group to its center (consider $S_2 \to S_3 \to S_2$, the symmetric groups).
 \end{exercise}
+\begin{solution}
+  Suppose not, i.e., there exists a functor $Z : \Grp \to \Ab$ sending each group to its center.
+  Define $f : S_2 \to S_3$ as $f (1 \, 2) = (1 \, 2)$, and define $g : S_3 \to S_2$ as $g(\sigma) = (1 \, 2)^{\operatorname{sgn} (\sigma)}$ for each $\sigma \in S_3$, where $\operatorname{sgn} (\sigma)$ is the sign of the permutation $\sigma$.
+  Then, we have $g \circ f = 1_{S_2}$, by a simple calculation.
+
+  Applying the functor $Z$, we have $Z(g) \circ Z(f) = Z(1_{S_2}) = 1_{Z(S_2)}$.
+  However, since the center of $S_3$ is trivial, $Z(f)$ maps everything to the identity element of $Z(S_3)$, making $Z(g) \circ Z(f)$ also the trivial map.
+  This contradicts the fact that $Z(g) \circ Z(f) = 1_{Z(S_2)}$.
+  Therefore, such a functor cannot exist.
+\end{solution}
 
 \begin{exercise} % 5
   Find two different functors $T : \Grp \to \Grp$ with object function $T(G) = G$ the identity for every group $G$.
