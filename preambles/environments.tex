@@ -1,0 +1,30 @@
+%%                 diagram                 %%
+\newenvironment{cd}[1][ampersand replacement=\&]{
+    \[\begin{tikzcd}[#1,ampersand replacement=\&]
+}{
+    \end{tikzcd}\]
+}
+\newenvironment{inlinecd}[1][ampersand replacement=\&]{
+    \(\begin{tikzcd}[#1,ampersand replacement=\&]
+}{
+    \end{tikzcd}\)
+}
+\newenvironment{newcd}[1][ampersand replacement=\&]{
+    \begin{tikzcd}[#1,ampersand replacement=\&]
+}{
+    \end{tikzcd}
+}
+\NewDocumentCommand{\scaledcd}{mmo}{
+    \IfNoValueTF{#3}{
+        \adjustbox{#1}{\begin{newcd}#2\end{newcd}}
+    }{
+        \adjustbox{#1}{\begin{newcd}[#3]#2\end{newcd}}
+    }
+}
+
+%%               tikzpicture               %%
+\newenvironment{draw}{
+    \[\begin{tikzpicture}[shorten <>=0pt]
+}{
+    \end{tikzpicture}\]
+}

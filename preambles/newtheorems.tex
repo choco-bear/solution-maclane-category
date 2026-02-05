@@ -1,0 +1,46 @@
+%%             theoremstyle                %%
+\newtheoremstyle{exercise}%   Name
+  {}%                         Space above, empty = `usual value'
+  {2em}%                      Space below
+  {%                          Body font
+    \upshape
+    \setlength{\parskip}{0pt}
+    \setlength{\parindent}{0em}
+    \setlength{\leftskip}{1.7em}
+  }%
+  {}%                         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries}%                Thm head font
+  {}%                         Punctuation after thm head
+  {0em}%                      Space after thm head: \newline = linebreak
+  {%                          Thm head spec 
+    \llap{%                   Note: \llap puts its argument to the left of the rest of the line
+      \makebox[1.7em][r]{#2.\hspace{2mm}}%
+    }%
+  }%
+
+\theoremstyle{exercise}
+
+%%                exercises                %%
+\newtheorem{exercise}{Exercise}[section]
+\renewcommand*{\theexercise}{\arabic{exercise}}
+
+\makeatletter 
+\renewenvironment{proof}[1][\proofname]{
+  \par \pushQED{\qed}% 
+  \normalfont\topsep6\p@\@plus6\p@\relax 
+  \trivlist 
+  \item\relax {
+    \itshape #1\@addpunct{.}
+  }\hspace\labelsep\ignorespaces \setlength{\parindent}{0pt}\par
+}{% 
+  \popQED\endtrivlist\@endpefalse 
+} 
+\makeatother
+\newenvironment{solution}{
+  \begin{proof}[Solution]
+}{
+  \end{proof}\vspace{5mm}
+}
+
+%%                qed symbol               %%
+\renewcommand\qedsymbol{$\blacksquare$}
