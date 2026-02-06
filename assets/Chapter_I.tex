@@ -277,6 +277,24 @@
     Then $\psi\varphi = \psi'\varphi$, but $\psi \neq \psi'$
   ).
 \end{exercise}
+\begin{solution}
+  Let $\varphi : G \to H$ be an epi in $\Grp$.
+  Suppose, for the sake of contradiction, that $\varphi$ is not surjective.
+  Let $M = \varphi(G)$ be the image of $\varphi$, which is a proper subgroup of $H$.
+
+  If $M$ has the index $2$ in $H$, then the quotient group $H/M$ has two elements.
+  Define the homomorphism $\psi : H \to H/M$ as the natural projection.
+  Then, we have $\psi \circ \varphi : G \to H/M$ is the trivial homomorphism.
+  By defining another homomorphism $\psi' : H \to H/M$ as the trivial homomorphism, we have $\psi \circ \varphi = \psi' \circ \varphi$, but $\psi \neq \psi'$, contradicting the assumption that $\varphi$ is epi.
+
+  For otherwise, i.e., if $M$ has an index greater than $2$, we can use the permutation representation as hinted.
+  Define $\sigma \in \operatorname{Perm} H$ by swapping two distinct cosets of $M$ and fixing all other elements.
+  Define $\psi : H \to \operatorname{Perm} H$ by left multiplication, and define $\psi' : H \to \operatorname{Perm} H$ by conjugating with $\sigma$.
+  Then, we have $\psi \circ \varphi = \psi' \circ \varphi$, but $\psi \neq \psi'$, again contradicting the assumption that $\varphi$ is epi.
+
+  Therefore, our assumption that $\varphi$ is not surjective must be false.
+  Hence, every epi in $\Grp$ is surjective.
+\end{solution}
 
 \begin{exercise} % 6
   In $\Set$, show that all idempotents split.
