@@ -214,6 +214,16 @@
 \begin{exercise} % 1
   Find a category with an arrow which is both epi and monic, but not invertible (e.g., dense subset of a topological space).
 \end{exercise}
+\begin{solution}
+  $\mathbf{2}$, the category with two objects $0$ and $1$ and a single non-identity arrow $\downarrow : 0 \to 1$, serves as an example.
+  In this category, the arrow $\downarrow$ is both monic and epi.
+  To see that $\downarrow$ is monic, consider any two arrows $f, g : a \to 0$ such that $\downarrow \circ f = \downarrow \circ g$.
+  Since there is only one arrow to $0$, we have $f = g$.
+  To see that $\downarrow$ is epi, consider any two arrows $f, g : 1 \to b$ such that $f \circ \downarrow = g \circ \downarrow$.
+  Since there is only one arrow from $1$, we have $f = g$.
+  However, $\downarrow$ is not invertible since there is no arrow from $1$ to $0$.
+  Thus, $\downarrow$ is an example of an arrow that is both epi and monic, but not invertible.
+\end{solution}
 
 \begin{exercise} % 2
   Prove that the composite of monics is monic, and likewise for epis.
