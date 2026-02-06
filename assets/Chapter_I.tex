@@ -312,6 +312,21 @@
   An arrow $f : a \to b$ in a category $C$ is \emph{regular} when there exists an arrow $g : b \to a$ such that $f \, g \, f = f$.
   Show that $f$ is regular if it has either a left or a right inverse, and prove that every arrow in $\Set$ with $a \neq \emptyset$ is regular.
 \end{exercise}
+\begin{solution}
+  The first part is straightforward.
+  If $f$ has a left inverse $g : b \to a$, then $g \circ f = 1_a$, and thus $f \circ g \circ f = f \circ 1_a = f$.
+  If $f$ has a right inverse $h : b \to a$, then $f \circ h = 1_b$, and thus $f \circ h \circ f = 1_b \circ f = f$.
+
+  For the second part, let $f : a \to b$ be a set-function with $a \neq \emptyset$.
+  Choose an element $x_0 \in a$.
+  Define the function $g : b \to a$ as follows:
+  \[ g(y) = \begin{cases}
+    x, & \text{if there exists }x \in a \text{ such that } f(x) = y; \\
+    x_0, & \text{otherwise}.
+  \end{cases} \]
+  Then, for each $x \in a$, $g(f(x)) = x$ by the definition of $g$, which implies that $f(g(f(x))) = f(x)$.
+  Therefore, we have $f \circ g \circ f = f$, and thus $f$ is regular, as desired.
+\end{solution}
 
 \begin{exercise} % 8
   Consider the category with objects $\left\langle X, e, t \right\rangle$, where $X$ is a set, $e \in X$, and $t : X \to X$, and with arrows $f : \left\langle X, e, t \right\rangle \to \left\langle X', e', t' \right\rangle$ the functions $f$ on $X$ to $X'$ with $f \, e = e'$ and $f \, t = t' \, f$.
