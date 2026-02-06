@@ -259,9 +259,30 @@
 \begin{exercise} % 1
   Given a universe $U$ and a function $f : I \to b$ with domain $I \in U$ and with every value $f_i$ an element of $U$, for $i \in I$, prove that the usual cartesian product $\prod_i f_i$ is an element of $U$.
 \end{exercise}
+\begin{solution}
+  By the fact that $f_i \in U$ for every $i \in I$, the image of $f$ is a subset of $U$.
+  Hence, by the condition (v) in the definition of a universe, the image of $f$ is an element of $U$.
+  Now, by the condition (iv) in the definition of a universe, the union of the image of $f$ is an element of $U$.
+  Thus, by the condition (ii) in the definition of a universe, the cartesian product of $I$ and the union of the image of $f$ is an element of $U$.
+  Finally, by the definition of the cartesian product $\prod_i f_i$, we know that $\prod_i f_i$ is a subset of the cartesian product of $I$ and the union of the image of $f$.
+  Therefore, combining the conditions (i) and (v) in the definition of a universe, we conclude that $\prod_i f_i$ is an element of $U$.
+\end{solution}
 
 \begin{exercise} % 2
   (a) Given a universe $U$ and a function $f : I \to b$ with domain $I \in U$, show that the usual union $\bigcup_i f_i$ is a set of $U$.
 
   (b) Show that this one closure property of $U$ may replace condition (v) and the condition $x \in U$ implies $\bigcup x \in U$ in the definition of a universe.
 \end{exercise}
+\begin{solution}
+  (a) If $f_i = U$ for every $i \in I$, then $\bigcup_i f_i = U$, which is not a set of $U$, obviously.
+  Hence, we need to assume that $f_i \in U$ for each $i \in I$, to prove that $\bigcup_i f_i$ is a set of $U$.
+  With this assumption, by the condition (v) in the definition of a universe, we know that the image of $f$ is an element of $U$.
+  Thus, by the condition (iv) in the definition of a universe, the union of the image of $f$, which is equal to $\bigcup_i f_i$, is an element of $U$.
+
+  (b) Let (vi) denote the closure property given in (a), and assume (vi) holds for any universes.
+  Say $f : a \to b$ is a surjective function with $a \in U$ and $b \subset U$.
+  Define $g : a \to \bigcup b$ by $g(x) = \left\{ f(x) \right\}$ for each $x \in a$.
+  Then, by the conditions (iii) and (i) in the definition of a universe, $g(x) \in U$ for each $x \in a$.
+  Hence, by the condition (vi), the union $\bigcup_{x \in a} g(x) = \bigcup_{x \in a} \left\{ f(x) \right\} = b$ is an element of $U$.
+  Therefore, we conclude that (vi) can replace condition (v), as desired.
+\end{solution}
