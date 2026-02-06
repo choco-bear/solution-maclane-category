@@ -214,18 +214,60 @@
 \begin{exercise} % 1
   Find a category with an arrow which is both epi and monic, but not invertible (e.g., dense subset of a topological space).
 \end{exercise}
+\begin{solution}
+  $\mathbf{2}$, the category with two objects $0$ and $1$ and a single non-identity arrow $\downarrow : 0 \to 1$, serves as an example.
+  In this category, the arrow $\downarrow$ is both monic and epi.
+  To see that $\downarrow$ is monic, consider any two arrows $f, g : a \to 0$ such that $\downarrow \circ f = \downarrow \circ g$.
+  Since there is only one arrow to $0$, we have $f = g$.
+  To see that $\downarrow$ is epi, consider any two arrows $f, g : 1 \to b$ such that $f \circ \downarrow = g \circ \downarrow$.
+  Since there is only one arrow from $1$, we have $f = g$.
+  However, $\downarrow$ is not invertible since there is no arrow from $1$ to $0$.
+  Thus, $\downarrow$ is an example of an arrow that is both epi and monic, but not invertible.
+\end{solution}
 
 \begin{exercise} % 2
   Prove that the composite of monics is monic, and likewise for epis.
 \end{exercise}
+\begin{solution}
+  Say $f : a \to b$ and $g : b \to c$ are monic arrows in a category $C$.
+  To show that the composite $g \circ f : a \to c$ is monic, consider any two arrows $h_1, h_2 : d \to a$ such that $(g \circ f) \circ h_1 = (g \circ f) \circ h_2$.
+  Then, we have $g \circ (f \circ h_1) = g \circ (f \circ h_2)$.
+  Since $g$ is monic, it follows that $f \circ h_1 = f \circ h_2$.
+  Since $f$ is also monic, we conclude that $h_1 = h_2$.
+  Therefore, $g \circ f$ is monic.
+
+  The proof for epis is exactly identical, but with the arrows reversed.
+\end{solution}
 
 \begin{exercise} % 3
   If a composite $g \circ f$ is monic, so is $f$. Is this true of $g$?
 \end{exercise}
+\begin{solution}
+  Say $g \circ f : a \to c$ is monic.
+  To show that $f : a \to b$ is monic, consider any two arrows $h_1, h_2 : d \to a$ such that $f \circ h_1 = f \circ h_2$.
+  Then, we have $g \circ (f \circ h_1) = g \circ (f \circ h_2)$, which implies that $(g \circ f) \circ h_1 = (g \circ f) \circ h_2$.
+  Since $g \circ f$ is monic, it follows that $h_1 = h_2$.
+  Therefore, $f$ is monic.
+
+  However, this is not necessarily true for $g$.
+  For example, consider the set-functions $f : \{1\} \to \{1, 2\}$ defined by $f(1) = 1$, and $g : \{1, 2\} \to \{1\}$ defined by $- \mapsto 1$.
+  Then the composite $g \circ f : \{1\} \to \{1\}$ is the identity function, which is monic.
+  However, $g$ is not monic since $g \circ f = g \circ f'$ where $f' : \{1\} \to \{1, 2\}$ is defined by $f'(1) = 2$.
+  Thus, $g$ is not monic even though $g \circ f$ is monic.
+\end{solution}
 
 \begin{exercise} % 4
   Show that the inclusion $\mathbf{Z} \to \mathbf{Q}$ is epi in the category $\Rng$.
 \end{exercise}
+\begin{solution}
+  Say $\iota : \mathbf{Z} \to \mathbf{Q}$ is the inclusion and $f,g : \mathbf{Q} \to R$ are ring homomorphisms, such that $f \circ \iota = g \circ \iota$.
+  Then $f(n) = g(n)$ for any integers $n$.
+  Since $f(1) = f\left(n \cdot \frac{1}{n}\right) = f(n) f\left(\frac{1}{n}\right)$, $f(n)$ is invertible in $R$ for any nonzero integer $n$, and $f\left(\frac{1}{n}\right) = f(n)^{-1}$.
+  The same applies to $g$.
+  Thus, for any rational number $\frac{m}{n}$, we have
+  \[ f\left(\frac{m}{n}\right) = f(m) f\left(\frac{1}{n}\right) = f(m) f(n)^{-1} = g(m) g(n)^{-1} = g\left(\frac{m}{n}\right). \]
+  Therefore, $f = g$, and $\iota$ is epi in $\Rng$.
+\end{solution}
 
 \begin{exercise} % 5
   In $\Grp$ prove that every epi is surjective (Hint.
@@ -235,24 +277,83 @@
     Then $\psi\varphi = \psi'\varphi$, but $\psi \neq \psi'$
   ).
 \end{exercise}
+\begin{solution}
+  Let $\varphi : G \to H$ be an epi in $\Grp$.
+  Suppose, for the sake of contradiction, that $\varphi$ is not surjective.
+  Let $M = \varphi(G)$ be the image of $\varphi$, which is a proper subgroup of $H$.
+
+  If $M$ has the index $2$ in $H$, then the quotient group $H/M$ has two elements.
+  Define the homomorphism $\psi : H \to H/M$ as the natural projection.
+  Then, we have $\psi \circ \varphi : G \to H/M$ is the trivial homomorphism.
+  By defining another homomorphism $\psi' : H \to H/M$ as the trivial homomorphism, we have $\psi \circ \varphi = \psi' \circ \varphi$, but $\psi \neq \psi'$, contradicting the assumption that $\varphi$ is epi.
+
+  For otherwise, i.e., if $M$ has an index greater than $2$, we can use the permutation representation as hinted.
+  Define $\sigma \in \operatorname{Perm} H$ by swapping two distinct cosets of $M$ and fixing all other elements.
+  Define $\psi : H \to \operatorname{Perm} H$ by left multiplication, and define $\psi' : H \to \operatorname{Perm} H$ by conjugating with $\sigma$.
+  Then, we have $\psi \circ \varphi = \psi' \circ \varphi$, but $\psi \neq \psi'$, again contradicting the assumption that $\varphi$ is epi.
+
+  Therefore, our assumption that $\varphi$ is not surjective must be false.
+  Hence, every epi in $\Grp$ is surjective.
+\end{solution}
 
 \begin{exercise} % 6
   In $\Set$, show that all idempotents split.
 \end{exercise}
+\begin{solution}
+  Let $f : X \to X$ be an idempotent set-function.
+  Define $\alpha : X \to f(X)$ as $\alpha(x) = f(x)$ for each $x \in X$, and define $\beta : f(X) \to X$ as the inclusion map.
+  Then, for each $x \in X$, we have $\beta(\alpha(x)) = \beta(f(x)) = f(x)$, which implies that $\beta \circ \alpha = f$.
+  Moreover, for each $y \in f(X)$, there exists $x \in X$ such that $f(x) = y$, and thus $f(y) = f(f(x)) = f(x) = y$.
+  This immediately implies that $\alpha \circ \beta = 1_{f(X)}$ since $\alpha(\beta(y)) = \alpha(y) = f(y) = y$.
+  Therefore, $f$ splits as desired.
+\end{solution}
 
 \begin{exercise} % 7
   An arrow $f : a \to b$ in a category $C$ is \emph{regular} when there exists an arrow $g : b \to a$ such that $f \, g \, f = f$.
   Show that $f$ is regular if it has either a left or a right inverse, and prove that every arrow in $\Set$ with $a \neq \emptyset$ is regular.
 \end{exercise}
+\begin{solution}
+  The first part is straightforward.
+  If $f$ has a left inverse $g : b \to a$, then $g \circ f = 1_a$, and thus $f \circ g \circ f = f \circ 1_a = f$.
+  If $f$ has a right inverse $h : b \to a$, then $f \circ h = 1_b$, and thus $f \circ h \circ f = 1_b \circ f = f$.
+
+  For the second part, let $f : a \to b$ be a set-function with $a \neq \emptyset$.
+  Choose an element $x_0 \in a$.
+  Define the function $g : b \to a$ as follows:
+  \[ g(y) = \begin{cases}
+    x, & \text{if there exists }x \in a \text{ such that } f(x) = y; \\
+    x_0, & \text{otherwise}.
+  \end{cases} \]
+  Then, for each $x \in a$, $g(f(x)) = x$ by the definition of $g$, which implies that $f(g(f(x))) = f(x)$.
+  Therefore, we have $f \circ g \circ f = f$, and thus $f$ is regular, as desired.
+\end{solution}
 
 \begin{exercise} % 8
   Consider the category with objects $\left\langle X, e, t \right\rangle$, where $X$ is a set, $e \in X$, and $t : X \to X$, and with arrows $f : \left\langle X, e, t \right\rangle \to \left\langle X', e', t' \right\rangle$ the functions $f$ on $X$ to $X'$ with $f \, e = e'$ and $f \, t = t' \, f$.
   Prove that this category has an initial object in which $X$ is the set of natural numbers, $e = 0$, and $t$ is the successor function.
 \end{exercise}
+\begin{solution}
+  Let $\left\langle X, e, t \right\rangle$ be an object in the given category.
+  Defining $f : \mathbb{N} \to X$ as $f(n) = t^n(e)$ for each natural number $n$, where $t^n$ denotes the $n$-th iterate of $t$ (with $t^0$ being the identity function), we have:
+  \begin{itemize}
+    \item $f(0) = t^0(e) = e$, so $f \, 0 = e$;
+    \item for each natural number $n$, $f(n+1) = t^{n+1}(e) = t(t^n(e)) = t(f(n))$, so $f \circ (- + 1) = t \, f$.
+  \end{itemize}
+  Hence, $f : \left\langle \mathbb{N}, 0, (- + 1) \right\rangle \to \left\langle X, e, t \right\rangle$ is an arrow in the category.
+  Moreover, for any other arrow $g : \left\langle \mathbb{N}, 0, (- + 1) \right\rangle \to \left\langle X, e, t \right\rangle$, we can show by induction on $n$ that $g(n) = f(n)$ for each natural number $n$.
+  Therefore, $f$ is the unique arrow from the object $\left\langle \mathbb{N}, 0, (- + 1) \right\rangle$ to an object $\left\langle X, e, t \right\rangle$ in the given category, proving that $\left\langle \mathbb{N}, 0, (- + 1) \right\rangle$ is an initial object in the category.
+\end{solution}
 
 \begin{exercise} % 9
   If the functor $T : C \to B$ is faithful and $T f$ is monic, prove $f$ monic.
 \end{exercise}
+\begin{solution}
+  Say $f \circ \alpha = f \circ \beta$ for some arrows $\alpha$ and $\beta$ of $C$.
+  Then $\alpha$ and $\beta$ are parallel arrows so it suffices to show that $T \, \alpha = T \, \beta$.
+  Since $T$ is a functor, we have $T \, (f \circ \alpha) = T \, f \circ T \, \alpha$ and $T \, (f \circ \beta) = T \, f \circ T \, \beta$.
+  Thus, we have $T \, f \circ T \, \alpha = T \, f \circ T \, \beta$, and it follows that $T \, \alpha = T \, \beta$ since $T \, f$ is monic.
+  Since $T$ is faithful, we conclude that $\alpha = \beta$, and therefore $f$ is monic, as desired.
+\end{solution}
 
 \section{Foundations} % Section 6.
 
@@ -286,3 +387,4 @@
   Hence, by the condition (vi), the union $\bigcup_{x \in a} g(x) = \bigcup_{x \in a} \left\{ f(x) \right\} = b$ is an element of $U$.
   Therefore, we conclude that (vi) can replace condition (v), as desired.
 \end{solution}
+\end{exercise}
