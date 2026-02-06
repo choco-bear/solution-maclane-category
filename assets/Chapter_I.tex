@@ -109,6 +109,22 @@
   Conversely, show that every such function $\tau$ comes from a unique natural transformation with $\tau_c = \tau(1_c)$.
   (This gives an ``arrows only'' description of a natural transformation.)
 \end{exercise}
+\begin{solution}
+  Define the function $\tau$ on arrows as $\tau f = \tau_{c'} \circ S f = T f \circ \tau_c$ for each arrow $f : c \to c'$ in $C$ -- the equality follows from the naturality of $\tau$.
+  Then, for each composable pair $\left\langle g, f \right\rangle$ in $C$, we have:
+  \[ T \, g \circ \tau \, f = T \, g \circ T \, f \circ \tau_{c''} = T \, (g \circ f) \circ \tau_{c''} = \tau (g \, f) = \tau_{c'} \circ S \, (g \circ f) = \tau_{c'} \circ S \, g \circ S \, f = \tau \, g \circ S \, f. \]
+
+  Conversely, let $\tau$ be a function on arrows satisfying the given condition.
+  Define the components of the natural transformation $\tau : S \nat T$ as $\tau_c = \tau(1_c)$ for each object $c$ in $C$.
+  Then, for each arrow $f : c \to c'$ in $C$, we have:
+  \[ T \, f \circ \tau_c = T \, f \circ \tau(1_c) = \tau(f) = \tau(1_{c'}) \circ S \, f = \tau_{c'} \circ S \, f, \]
+  which makes the following diagram commute:
+  \begin{cd}
+    S c \ar[r, "\tau_c"] \ar[d, swap, "S f"] \& T c \ar[d, "T f"] \\
+    S c' \ar[r, "\tau_{c'}"] \& T c'
+  \end{cd}
+  Therefore, $\tau : S \nat T$ is a natural transformation, as desired.
+\end{solution}
 
 \begin{exercise} % 6
   Let $F$ be a field. Show that the category of all finite-dimensional vector spaces over $F$ (with morphisms all linear transformations) is equivalent to the category $\Matr{F}$ described in \S2.
