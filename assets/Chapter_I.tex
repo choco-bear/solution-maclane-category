@@ -106,6 +106,14 @@
 \begin{exercise} % 1
   Given a universe $U$ and a function $f : I \to b$ with domain $I \in U$ and with every value $f_i$ an element of $U$, for $i \in I$, prove that the usual cartesian product $\prod_i f_i$ is an element of $U$.
 \end{exercise}
+\begin{solution}
+  By the fact that $f_i \in U$ for every $i \in I$, the image of $f$ is a subset of $U$.
+  Hence, by the condition (v) in the definition of a universe, the image of $f$ is an element of $U$.
+  Now, by the condition (iv) in the definition of a universe, the union of the image of $f$ is an element of $U$.
+  Thus, by the condition (ii) in the definition of a universe, the cartesian product of $I$ and the union of the image of $f$ is an element of $U$.
+  Finally, by the definition of the cartesian product $\prod_i f_i$, we know that $\prod_i f_i$ is a subset of the cartesian product of $I$ and the union of the image of $f$.
+  Therefore, combining the condition (i) and (v) in the definition of a universe, we conclude that $\prod_i f_i$ is an element of $U$.
+\end{solution}
 
 \begin{exercise} % 2
   (a) Given a universe $U$ and a function $f : I \to b$ with domain $I \in U$, show that the usual union $\bigcup_i f_i$ is a set of $U$.
