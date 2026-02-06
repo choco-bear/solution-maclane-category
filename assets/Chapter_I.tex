@@ -259,6 +259,15 @@
 \begin{exercise} % 4
   Show that the inclusion $\mathbf{Z} \to \mathbf{Q}$ is epi in the category $\Rng$.
 \end{exercise}
+\begin{solution}
+  Say $\iota : \mathbf{Z} \to \mathbf{Q}$ is the inclusion and $f,g : \mathbf{Q} \to R$ are ring homomorphisms, such that $f \circ \iota = g \circ \iota$.
+  Then $f(n) = g(n)$ for any integers $n$.
+  Since $f(1) = f\left(n \cdot \frac{1}{n}\right) = f(n) f\left(\frac{1}{n}\right)$, $f(n)$ is invertible in $R$ for any nonzero integer $n$, and $f\left(\frac{1}{n}\right) = f(n)^{-1}$.
+  The same applies to $g$.
+  Thus, for any rational number $\frac{m}{n}$, we have
+  \[ f\left(\frac{m}{n}\right) = f(m) f\left(\frac{1}{n}\right) = f(m) f(n)^{-1} = g(m) g(n)^{-1} = g\left(\frac{m}{n}\right). \]
+  Therefore, $f = g$, and $\iota$ is epi in $\Rng$.
+\end{solution}
 
 \begin{exercise} % 5
   In $\Grp$ prove that every epi is surjective (Hint.
