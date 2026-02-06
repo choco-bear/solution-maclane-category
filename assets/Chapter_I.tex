@@ -347,6 +347,13 @@
 \begin{exercise} % 9
   If the functor $T : C \to B$ is faithful and $T f$ is monic, prove $f$ monic.
 \end{exercise}
+\begin{solution}
+  Say $f \circ \alpha = f \circ \beta$ for some arrows $\alpha$ and $\beta$ of $C$.
+  Then $\alpha$ and $\beta$ are parallel arrows so it suffices to show that $T \, \alpha = T \, \beta$.
+  Since $T$ is a functor, we have $T \, (f \circ \alpha) = T \, f \circ T \, \alpha$ and $T \, (f \circ \beta) = T \, f \circ T \, \beta$.
+  Thus, we have $T \, f \circ T \, \alpha = T \, f \circ T \, \beta$, and it follows that $T \, \alpha = T \, \beta$ since $T \, f$ is monic.
+  Since $T$ is faithful, we conclude that $\alpha = \beta$, and therefore $f$ is monic, as desired.
+\end{solution}
 
 \section{Foundations} % Section 6.
 
