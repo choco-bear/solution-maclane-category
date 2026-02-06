@@ -332,6 +332,17 @@
   Consider the category with objects $\left\langle X, e, t \right\rangle$, where $X$ is a set, $e \in X$, and $t : X \to X$, and with arrows $f : \left\langle X, e, t \right\rangle \to \left\langle X', e', t' \right\rangle$ the functions $f$ on $X$ to $X'$ with $f \, e = e'$ and $f \, t = t' \, f$.
   Prove that this category has an initial object in which $X$ is the set of natural numbers, $e = 0$, and $t$ is the successor function.
 \end{exercise}
+\begin{solution}
+  Let $\left\langle X, e, t \right\rangle$ be an object in the given category.
+  Defining $f : \mathbb{N} \to X$ as $f(n) = t^n(e)$ for each natural number $n$, where $t^n$ denotes the $n$-th iterate of $t$ (with $t^0$ being the identity function), we have:
+  \begin{itemize}
+    \item $f(0) = t^0(e) = e$, so $f \, 0 = e$;
+    \item for each natural number $n$, $f(n+1) = t^{n+1}(e) = t(t^n(e)) = t(f(n))$, so $f \circ (- + 1) = t \, f$.
+  \end{itemize}
+  Hence, $f : \left\langle \mathbb{N}, 0, (- + 1) \right\rangle \to \left\langle X, e, t \right\rangle$ is an arrow in the category.
+  Moreover, for any other arrow $g : \left\langle \mathbb{N}, 0, (- + 1) \right\rangle \to \left\langle X, e, t \right\rangle$, we can show by induction on $n$ that $g(n) = f(n)$ for each natural number $n$.
+  Therefore, $f$ is the unique arrow from the object $\left\langle \mathbb{N}, 0, (- + 1) \right\rangle$ to an object $\left\langle X, e, t \right\rangle$ in the given category, proving that $\left\langle \mathbb{N}, 0, (- + 1) \right\rangle$ is an initial object in the category.
+\end{solution}
 
 \begin{exercise} % 9
   If the functor $T : C \to B$ is faithful and $T f$ is monic, prove $f$ monic.
