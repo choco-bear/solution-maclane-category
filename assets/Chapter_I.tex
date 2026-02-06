@@ -101,28 +101,113 @@
 \begin{exercise} % 1
   Let $S$ be a fixed set, and $X^S$ the set of all functions $h : S \to X$. Show that $X \mapsto X^S$ is the object function of a functor $\Set \to \Set$, and the evaluation $e_X : X^S \times S \nat X$, defined by $e_X(h, s) = h(s)$, the value of the function $h$ at $s \in S$, is a natural transformation.
 \end{exercise}
+\begin{solution}
+  For each function $f : X \to Y$, define the function $f^S : X^S \to Y^S$ by $f^S(h) = f \circ h$ for every $h \in X^S$.
+  Then, it is straightforward to check that this defines a functor $(-)^S : \Set \to \Set$.
+
+  Next, we show that the evaluation $e_X : X^S \times S \nat X$ is a natural transformation.
+  For each function $f : X \to Y$, we need to show that the following diagram commutes:
+  \begin{cd}
+    X^S \times S \ar[r, "e_X"] \ar[d, swap, "f^S \times S"] \& X \ar[d, "f"] \\
+    Y^S \times S \ar[r, "e_Y"] \& Y
+  \end{cd}
+  For each $(h, s) \in X^S \times S$, we have
+  \[ f(e_X(h, s)) = f(h(s)) = f^S(h)(s) = e_Y(f^S(h), s) = e_Y((f^S \times S)(h, s)). \]
+  Thus, the diagram commutes, and $e_X$ is a natural transformation, as desired.
+\end{solution}
 
 \begin{exercise} % 2
   If $H$ is a fixed group, show that $G \mapsto H \times G$ defines a functor $H \times - : \Grp \to \Grp$, and that each morphism $f : H \to K$ of groups defines a natural transformation $H \times - \nat K \times -$.
 \end{exercise}
+\begin{solution}
+  For any group homomorphism $\varphi : G \to G'$, define $H \times \varphi : H \times G \to H \times G'$ by $(h, g) \mapsto (h, \varphi(g))$.
+  Then it is straightforward to check that this defines a functor $H \times - : \Grp \to \Grp$.
+
+  Next, for each group homomorphism $f : H \to K$, define the morphisms $\tilde{f}_G : H \times G \to K \times G$ as $\tilde{f}_G(h, g) = (f(h), g)$, for each group $G$.
+  Hence, it suffices to show that for each group homomorphism $\varphi : G \to G'$, the following diagram commutes:
+  \begin{cd}
+    H \times G \ar[r, "\tilde{f}_G"] \ar[d, swap, "H \times \varphi"] \& K \times G \ar[d, "K \times \varphi"] \\
+    H \times G' \ar[r, "\tilde{f}_{G'}"] \& K \times G'
+  \end{cd}
+  For each $(h, g) \in H \times G$, we have
+  \[ (K \times \varphi)(\tilde{f}_G(h, g)) = (K \times \varphi)(f(h), g) = (f(h), \varphi(g)) = \tilde{f}_{G'}(h, \varphi(g)) = \tilde{f}_{G'}((H \times \varphi)(h, g)). \]
+  Thus, the diagram commutes, and $\tilde{f} : H \times - \nat K \times -$ is a natural transformation, as desired.
+\end{solution}
 
 \begin{exercise} % 3
   If $B$ and $C$ are groups (regarded as categories with one object each) and $S,T : B \to C$ are functors (homomorphisms or groups), show that there is a natural transformation $S \nat T$ if and only if $S$ and $T$ are conjugate; i.e., if and only if there is an element $h \in C$ with $Tg = h(Sg)h^{-1}$ for every $g \in B$.
 \end{exercise}
+\begin{solution}
+  Say $\eta : S \nat T$ is a natural transformation.
+  Then, by the naturality condition, for the unique object $\bullet$ of $B$, and for each group element $g \in B$, we have the following commutative diagram:
+  \begin{cd}
+    S \bullet \ar[r, "\eta_\bullet"] \ar[d, swap, "S g"] \& T \bullet \ar[d, "T g"] \\
+    S \bullet \ar[r, "\eta_\bullet"] \& T \bullet
+  \end{cd}
+  Thus, we have $\eta_\bullet \cdot S g = T g \cdot \eta_\bullet$ for each $g \in B$, which implies that $T g = \eta_\bullet \cdot S \, g \cdot (\eta_\bullet)^{-1}$.
+  Hence, $S$ and $T$ are conjugate via the group element $\eta_\bullet \in C$.
+
+  Conversely, assume that $S$ and $T$ are conjugate via an element $h \in C$; i.e., $T \, g = h \cdot S \, g \cdot h^{-1}$ for each group element $g \in B$.
+  Define the morphism $\eta_\bullet : S \, \bullet \to T \, \bullet$ as $\eta_\bullet = h$, where $\bullet$ denotes the unique object of $B$.
+  Then, for each group element $g \in B$, we have $T \, g \cdot h = h \cdot S \, g$, which implies the naturality condition for $\eta$.
+  Therefore, $\eta : S \nat T$ is a natural transformation, as desired.
+\end{solution}
 
 \begin{exercise} % 4
   For functors $S,T : C \to P$ where $C$ is a category and $P$ a preorder, show that there is a natural transformation $S \nat T$ (which is then unique) if and only if $S c \leqq T c$ for every object $c \in C$.
 \end{exercise}
+\begin{solution}
+  Say $\eta : S \nat T$ is a natural transformation.
+  Then, for each object $c \in C$, $\eta_c : S c \to T c$ gives us $S c \leqq T c$ in $P$.
+
+  Conversely, assume that $S c \leqq T c$ for each object $c \in C$.
+  Then, for each object $c \in C$, there exists a unique arrow $\eta_c : S c \to T c$ in $P$.
+  Hence, it suffices to show that for each arrow $f : c \to c'$ in $C$, the following diagram commutes:
+  \begin{cd}
+    S c \ar[r, "\eta_c"] \ar[d, swap, "S f"] \& T c \ar[d, "T f"] \\
+    S c' \ar[r, "\eta_{c'}"] \& T c'
+  \end{cd}
+  Since $P$ is a preorder, there is at most one arrow between any two objects.
+  Hence, the diagram commutes, as both paths represent the unique arrow from $S c$ to $T c'$ in the preorder $P$.
+  Therefore, $\eta : S \nat T$ is a natural transformation, as desired.
+\end{solution}
 
 \begin{exercise} % 5
   Show that every natural transformation $\tau : S \nat T$ Tdefines a function (also called $\tau$) which sends each arrow $f : c \to c'$ of $C$ to an arrow $\tau f : S c \to T' c$ of $B$ in such a way that $T g \circ \tau f = \tau (g \, f) = \tau g \circ S f$ for all composable pair $\left\langle g, f \right\rangle$.
   Conversely, show that every such function $\tau$ comes from a unique natural transformation with $\tau_c = \tau(1_c)$.
   (This gives an ``arrows only'' description of a natural transformation.)
 \end{exercise}
+\begin{solution}
+  Define the function $\tau$ on arrows as $\tau f = \tau_{c'} \circ S f = T f \circ \tau_c$ for each arrow $f : c \to c'$ in $C$ -- the equality follows from the naturality of $\tau$.
+  Then, for each composable pair $\left\langle g, f \right\rangle$ in $C$, we have:
+  \[ T \, g \circ \tau \, f = T \, g \circ T \, f \circ \tau_{c''} = T \, (g \circ f) \circ \tau_{c''} = \tau (g \, f) = \tau_{c'} \circ S \, (g \circ f) = \tau_{c'} \circ S \, g \circ S \, f = \tau \, g \circ S \, f. \]
+
+  Conversely, let $\tau$ be a function on arrows satisfying the given condition.
+  Define the components of the natural transformation $\tau : S \nat T$ as $\tau_c = \tau(1_c)$ for each object $c$ in $C$.
+  Then, for each arrow $f : c \to c'$ in $C$, we have:
+  \[ T \, f \circ \tau_c = T \, f \circ \tau(1_c) = \tau(f) = \tau(1_{c'}) \circ S \, f = \tau_{c'} \circ S \, f, \]
+  which makes the following diagram commute:
+  \begin{cd}
+    S c \ar[r, "\tau_c"] \ar[d, swap, "S f"] \& T c \ar[d, "T f"] \\
+    S c' \ar[r, "\tau_{c'}"] \& T c'
+  \end{cd}
+  Therefore, $\tau : S \nat T$ is a natural transformation, as desired.
+\end{solution}
 
 \begin{exercise} % 6
   Let $F$ be a field. Show that the category of all finite-dimensional vector spaces over $F$ (with morphisms all linear transformations) is equivalent to the category $\Matr{F}$ described in \S2.
 \end{exercise}
+\begin{solution}
+  An $n$-dimensional vector space corresponds to the object $n$ in $\Matr{F}$.
+  For each finite dimensional vector space $V$ over $F$, let $\dim V$ denote its dimension, and choose a basis for $V$ over $F$.
+  Then, for each linear transformation $T : V \to W$ between finite-dimensional vector spaces $V$ and $W$, we can represent $T$ as a matrix with respect to the chosen bases of $V$ and $W$.
+  This matrix is of size $\dim W \times \dim V$, which corresponds to a morphism from $\dim V$ to $\dim W$ in $\Matr{F}$.
+  Thus, we can define a functor $G$ from the category of finite-dimensional vector spaces over $F$ to $\Matr{F}$ by sending each vector space $V$ to its dimension $\dim V$, and each linear transformation $T : V \to W$ to its corresponding matrix representation.
+  Conversely, for each object $n$ in $\Matr{F}$, we can associate it with the vector space $F^n$, and for each morphism represented by a matrix $A : n \to m$, we can associate it with the linear transformation $T_A : F^n \to F^m$ defined by $T_A(x) = A x$.
+  This defines a functor $H$ from $\Matr{F}$ to the category of finite-dimensional vector spaces over $F$.
+  It is straightforward to check that the compositions $G \circ H$ and $H \circ G$ are naturally isomorphic to the identity functors on their respective categories.
+  Therefore, the category of finite-dimensional vector spaces over $F$ is equivalent to the category $\Matr{F}$, as desired.
+\end{solution}
 
 \section{Monics, Epis, and Zeros} % Section 5.
 
