@@ -33,6 +33,20 @@
 \begin{exercise} % 1
   Let $S$ be a fixed set, and $X^S$ the set of all functions $h : S \to X$. Show that $X \mapsto X^S$ is the object function of a functor $\Set \to \Set$, and the evaluation $e_X : X^S \times S \nat X$, defined by $e_X(h, s) = h(s)$, the value of the function $h$ at $s \in S$, is a natural transformation.
 \end{exercise}
+\begin{solution}
+  For each function $f : X \to Y$, define the function $f^S : X^S \to Y^S$ by $f^S(h) = f \circ h$ for every $h \in X^S$.
+  Then, it is straightforward to check that this defines a functor $(-)^S : \Set \to \Set$.
+
+  Next, we show that the evaluation $e_X : X^S \times S \nat X$ is a natural transformation.
+  For each function $f : X \to Y$, we need to show that the following diagram commutes:
+  \begin{cd}
+    X^S \times S \ar[r, "e_X"] \ar[d, swap, "f^S \times S"] \& X \ar[d, "f"] \\
+    Y^S \times S \ar[r, "e_Y"] \& Y
+  \end{cd}
+  For each $(h, s) \in X^S \times S$, we have
+  \[ f(e_X(h, s)) = f(h(s)) = f^S(h)(s) = e_Y(f^S(h), s) = e_Y((f^S \times S)(h, s)). \]
+  Thus, the diagram commutes, and $e_X$ is a natural transformation, as desired.
+\end{solution}
 
 \begin{exercise} % 2
   If $H$ is a fixed group, show that $G \mapsto H \times G$ defines a functor $H \times - : \Grp \to \Grp$, and that each morphism $f : H \to K$ of groups defines a natural transformation $H \times - \nat K \times -$.
