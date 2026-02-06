@@ -120,3 +120,16 @@
 
   (b) Show that this one closure property of $U$ may replace condition (v) and the condition $x \in U$ implies $\bigcup x \in U$ in the definition of a universe.
 \end{exercise}
+\begin{solution}
+  (a) If $f_i = U$ for every $i \in I$, then $\bigcup_i f_i = U$, which is not a set of $U$, obviously.
+  Hence, we need to assume that $f_i \in U$ for each $i \in I$, to prove that $\bigcup_i f_i$ is a set of $U$.
+  With this assumption, by the condition (v) in the definition of a universe, we know that the image of $f$ is an element of $U$.
+  Thus, by the condition (iv) in the definition of a universe, the union of the image of $f$, which is equal to $\bigcup_i f_i$, is an element of $U$.
+
+  (b) Let (vi) denote the closure property given in (a), and assume (vi) holds for any universes.
+  Say $f : a \to b$ is a surjective function with $a \in U$ and $b \subset U$.
+  Define $g : a \to \bigcup b$ by $g(x) = \left\{ f(x) \right\}$ for each $x \in a$.
+  Then, by the conditions (iii) and (i) in the definition of a universe, $g(x) \in U$ for each $x \in a$.
+  Hence, by the condition (vi), the union $\bigcup_{x \in a} g(x) = \bigcup_{x \in a} \left\{ f(x) \right\} = b$ is an element of $U$.
+  Therefore, we conclude that (vi) can replace condition (v), as desired.
+\end{solution}
