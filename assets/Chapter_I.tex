@@ -1,0 +1,368 @@
+\setcounter{chapter}{0}
+\chapter{Categories, Functors, and Natural Transformations}
+\setcounter{section}{2}
+\section{Functors} % Section 3.
+
+\begin{exercise} % 1
+  Show how each of the following constructions can be regarded as a functor:
+
+  The field of quotients of an integral domain; the Lie algebra of a Lie group.
+\end{exercise}
+\begin{solution}
+  For any integral domain $R$, define $F(R)$ as the field of fractions of $R$.
+  For any ring homomorphism $f: R \to S$ between integral domains, define $F(f): F(R) \to F(S)$ as $\frac{a}{b} \mapsto \frac{f(a)}{f(b)}$ for $a, b \in R$ with $b \neq 0$.
+  This construction preserves composition and identities, thus defining a functor from the category of integral domains to the category of fields.
+
+  For any Lie group $G$, define $\mathrm{Lie}(G)$ as the Lie algebra of $G$.
+  For any Lie group homomorphism $\phi : G \to H$, define $\mathrm{Lie}(\phi) : \mathrm{Lie}(G) \to \mathrm{Lie}(H)$ as the differential of $\phi$ at the identity element.
+  This construction also preserves composition and identities, thus defining a functor from the category of Lie groups to the category of Lie algebras.
+\end{solution}
+
+\begin{exercise} % 2
+  Show that functors $\mathbf{1} \to C$, $\mathbf{2} \to C$, and $\mathbf{3} \to C$ correspond respectively to objects, arrows, and composable pairs of arrows in $C$.
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[label=(\arabic*)]
+    \item The category $\mathbf{1}$ has a single object $0$ and only the identity $1_0$.
+      The following give us a bijective correspondence between the functors $\mathbf{1} \to C$ and the objects in $C$:
+      \begin{itemize}
+        \item Each functor $F : \mathbf{1} \to C$ defines an object $F(0)$ in $C$.
+        \item Each object $c$ in $C$ defines a functor $F : \mathbf{1} \to C$ by setting $F(0) = c$.
+      \end{itemize}
+
+    \item The category $\mathbf{2}$ has two objects $0$ and $1$, and three arrows: the identities $1_0$ and $1_1$, and the single non-identity arrow $\downarrow : 0 \to 1$.
+      The following give us a bijective correspondence between the functors $\mathbf{2} \to C$ and the arrows in $C$:
+      \begin{itemize}
+        \item Each functor $F : \mathbf{2} \to C$ defines an arrow $F(\downarrow) : F(0) \to F(1)$ in $C$.
+        \item Each arrow $f : c \to c'$ in $C$ defines a functor $F : \mathbf{2} \to C$ by setting $F(0) = c$, $F(1) = c'$, and $F(\downarrow) = f$.
+      \end{itemize}
+
+    \item The category $\mathbf{3}$ has three objects $0$, $1$, and $2$, and six arrows: the identities $1_0$, $1_1$ and $1_2$, and the three non-identity arrows $\downarrow_1 : 0 \to 1$, $\downarrow_2 : 1 \to 2$, and their composite $\downarrow_2 \circ \downarrow_1 : 0 \to 2$.
+      The following give us a bijective correspondence between the functors $\mathbf{3} \to C$ and the composable pairs of arrows in $C$:
+      \begin{itemize}
+        \item Each functor $F : \mathbf{3} \to C$ defines a composable pair of arrows $F(\downarrow_1) : F(0) \to F(1)$ and $F(\downarrow_2) : F(1) \to F(2)$ in $C$.
+        \item Each composable pair of arrows $f : c \to c'$ and $g : c' \to c''$ in $C$ defines a functor $F : \mathbf{3} \to C$ by setting $F(0) = c$, $F(1) = c'$, $F(2) = c''$, $F(\downarrow_1) = f$, and $F(\downarrow_2) = g$.
+      \end{itemize}
+  \end{enumerate}
+\end{solution}
+
+\begin{exercise} % 3
+  Interpret ``functor'' in the following special types of categories:
+  (a) A functor between two preorders is a function $T$ which is monotonic (i.e., $p \leqq p'$ implies $T p \leqq T p'$).
+  (b) A functor between two groups (one-object categories) is a morphism of groups.
+  (c) If $G$ is a group, a functor $G \to \Set$ is a permutation representation of $G$, while $G \to \Matr{K}$ is a matrix representation of $G$.
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item
+      Since a preorder can be viewed as a category where there is at most one morphism between any two objects, a functor $F : P \to Q$ between two preorders $P$ and $Q$ assigns to each object $p \in P$ an object $F(p) \in Q$, and to each morphism $p \leqq p'$ in $P$ a morphism $F(p) \leqq F(p')$ in $Q$.
+      This means that if $p \leqq p'$, then $F(p) \leqq F(p')$, which is precisely the definition of a monotonic function.
+
+    \item
+      A group can be viewed as a category with a single object where all morphisms are invertible.
+      A functor $F : G \to H$ between two groups $G$ and $H$ assigns the single object of $G$ to the single object of $H$, and each morphism (i.e., group element) $g \in G$ to a morphism (i.e., group element) $F(g) \in H$.
+      The functoriality conditions ensure that $F$ preserves the group operation and the identity element, making $F$ a group homomorphism.
+
+    \item
+      A functor $F : G \to \Set$ from a group $G$ to the category of sets assigns the single object of $G$ to a set $X$, and each group element $g \in G$ to a bijection $F(g) : X \to X$.
+      The functoriality conditions ensure that $F(gh) = F(g) \circ F(h)$ for all group elements (i.e., morphisms) $g, h$ of $G$, and $F(e) = \mathrm{id}_X$, where $e$ is the identity element of $G$.
+      This is precisely the definition of a permutation representation of the group $G$ on the set $X$.
+  \end{enumerate}
+\end{solution}
+
+\begin{exercise} % 4
+  Prove that there is no functor $\Grp \to \Ab$ sending each group to its center (consider $S_2 \to S_3 \to S_2$, the symmetric groups).
+\end{exercise}
+\begin{solution}
+  Suppose not, i.e., there exists a functor $Z : \Grp \to \Ab$ sending each group to its center.
+  Define $f : S_2 \to S_3$ as $f (1 \, 2) = (1 \, 2)$, and define $g : S_3 \to S_2$ as $g(\sigma) = (1 \, 2)^{\operatorname{sgn} (\sigma)}$ for each $\sigma \in S_3$, where $\operatorname{sgn} (\sigma)$ is the sign of the permutation $\sigma$.
+  Then, we have $g \circ f = 1_{S_2}$, by a simple calculation.
+
+  Applying the functor $Z$, we have $Z(g) \circ Z(f) = Z(1_{S_2}) = 1_{Z(S_2)}$.
+  However, since the center of $S_3$ is trivial, $Z(f)$ maps everything to the identity element of $Z(S_3)$, making $Z(g) \circ Z(f)$ also the trivial map.
+  This contradicts the fact that $Z(g) \circ Z(f) = 1_{Z(S_2)}$.
+  Therefore, such a functor cannot exist.
+\end{solution}
+
+\begin{exercise} % 5
+  Find two different functors $T : \Grp \to \Grp$ with object function $T(G) = G$ the identity for every group $G$.
+\end{exercise}
+\begin{solution}
+  Say $\varphi : C_3 \to C_3$ is defined as $[n] \mapsto [2n]$.
+  $\varphi$ is then an involutive automorphism of $C_3$.
+  Define $T(f) = [\varphi \circ] f [\circ \varphi]$, where $[\varphi \circ]$ and $[\circ \varphi]$ denote composition only when they are composable.
+  Then $T$ is a functor $\Grp \to \Grp$ with object function the identity.
+  However, $T$ is different from the identity functor since $T(f) \neq f$ where $f : C_3 \to C_6$ is defined as $[n] \mapsto [2n]$.
+  Therefore, we have found two different functors with the same object function.
+\end{solution}
+
+\section{Natural Transformations} % Section 4.
+
+\begin{exercise} % 1
+  Let $S$ be a fixed set, and $X^S$ the set of all functions $h : S \to X$. Show that $X \mapsto X^S$ is the object function of a functor $\Set \to \Set$, and the evaluation $e_X : X^S \times S \nat X$, defined by $e_X(h, s) = h(s)$, the value of the function $h$ at $s \in S$, is a natural transformation.
+\end{exercise}
+\begin{solution}
+  For each function $f : X \to Y$, define the function $f^S : X^S \to Y^S$ by $f^S(h) = f \circ h$ for every $h \in X^S$.
+  Then, it is straightforward to check that this defines a functor $(-)^S : \Set \to \Set$.
+
+  Next, we show that the evaluation $e_X : X^S \times S \nat X$ is a natural transformation.
+  For each function $f : X \to Y$, we need to show that the following diagram commutes:
+  \begin{cd}
+    X^S \times S \ar[r, "e_X"] \ar[d, swap, "f^S \times S"] \& X \ar[d, "f"] \\
+    Y^S \times S \ar[r, "e_Y"] \& Y
+  \end{cd}
+  For each $(h, s) \in X^S \times S$, we have
+  \[ f(e_X(h, s)) = f(h(s)) = f^S(h)(s) = e_Y(f^S(h), s) = e_Y((f^S \times S)(h, s)). \]
+  Thus, the diagram commutes, and $e_X$ is a natural transformation, as desired.
+\end{solution}
+
+\begin{exercise} % 2
+  If $H$ is a fixed group, show that $G \mapsto H \times G$ defines a functor $H \times - : \Grp \to \Grp$, and that each morphism $f : H \to K$ of groups defines a natural transformation $H \times - \nat K \times -$.
+\end{exercise}
+\begin{solution}
+  For any group homomorphism $\varphi : G \to G'$, define $H \times \varphi : H \times G \to H \times G'$ by $(h, g) \mapsto (h, \varphi(g))$.
+  Then it is straightforward to check that this defines a functor $H \times - : \Grp \to \Grp$.
+
+  Next, for each group homomorphism $f : H \to K$, define the morphisms $\tilde{f}_G : H \times G \to K \times G$ as $\tilde{f}_G(h, g) = (f(h), g)$, for each group $G$.
+  Hence, it suffices to show that for each group homomorphism $\varphi : G \to G'$, the following diagram commutes:
+  \begin{cd}
+    H \times G \ar[r, "\tilde{f}_G"] \ar[d, swap, "H \times \varphi"] \& K \times G \ar[d, "K \times \varphi"] \\
+    H \times G' \ar[r, "\tilde{f}_{G'}"] \& K \times G'
+  \end{cd}
+  For each $(h, g) \in H \times G$, we have
+  \[ (K \times \varphi)(\tilde{f}_G(h, g)) = (K \times \varphi)(f(h), g) = (f(h), \varphi(g)) = \tilde{f}_{G'}(h, \varphi(g)) = \tilde{f}_{G'}((H \times \varphi)(h, g)). \]
+  Thus, the diagram commutes, and $\tilde{f} : H \times - \nat K \times -$ is a natural transformation, as desired.
+\end{solution}
+
+\begin{exercise} % 3
+  If $B$ and $C$ are groups (regarded as categories with one object each) and $S,T : B \to C$ are functors (homomorphisms or groups), show that there is a natural transformation $S \nat T$ if and only if $S$ and $T$ are conjugate; i.e., if and only if there is an element $h \in C$ with $Tg = h(Sg)h^{-1}$ for every $g \in B$.
+\end{exercise}
+\begin{solution}
+  Say $\eta : S \nat T$ is a natural transformation.
+  Then, by the naturality condition, for the unique object $\bullet$ of $B$, and for each group element $g \in B$, we have the following commutative diagram:
+  \begin{cd}
+    S \bullet \ar[r, "\eta_\bullet"] \ar[d, swap, "S g"] \& T \bullet \ar[d, "T g"] \\
+    S \bullet \ar[r, "\eta_\bullet"] \& T \bullet
+  \end{cd}
+  Thus, we have $\eta_\bullet \cdot S g = T g \cdot \eta_\bullet$ for each $g \in B$, which implies that $T g = \eta_\bullet \cdot S \, g \cdot (\eta_\bullet)^{-1}$.
+  Hence, $S$ and $T$ are conjugate via the group element $\eta_\bullet \in C$.
+
+  Conversely, assume that $S$ and $T$ are conjugate via an element $h \in C$; i.e., $T \, g = h \cdot S \, g \cdot h^{-1}$ for each group element $g \in B$.
+  Define the morphism $\eta_\bullet : S \, \bullet \to T \, \bullet$ as $\eta_\bullet = h$, where $\bullet$ denotes the unique object of $B$.
+  Then, for each group element $g \in B$, we have $T \, g \cdot h = h \cdot S \, g$, which implies the naturality condition for $\eta$.
+  Therefore, $\eta : S \nat T$ is a natural transformation, as desired.
+\end{solution}
+
+\begin{exercise} % 4
+  For functors $S,T : C \to P$ where $C$ is a category and $P$ a preorder, show that there is a natural transformation $S \nat T$ (which is then unique) if and only if $S c \leqq T c$ for every object $c \in C$.
+\end{exercise}
+\begin{solution}
+  Say $\eta : S \nat T$ is a natural transformation.
+  Then, for each object $c \in C$, $\eta_c : S c \to T c$ gives us $S c \leqq T c$ in $P$.
+
+  Conversely, assume that $S c \leqq T c$ for each object $c \in C$.
+  Then, for each object $c \in C$, there exists a unique arrow $\eta_c : S c \to T c$ in $P$.
+  Hence, it suffices to show that for each arrow $f : c \to c'$ in $C$, the following diagram commutes:
+  \begin{cd}
+    S c \ar[r, "\eta_c"] \ar[d, swap, "S f"] \& T c \ar[d, "T f"] \\
+    S c' \ar[r, "\eta_{c'}"] \& T c'
+  \end{cd}
+  Since $P$ is a preorder, there is at most one arrow between any two objects.
+  Hence, the diagram commutes, as both paths represent the unique arrow from $S c$ to $T c'$ in the preorder $P$.
+  Therefore, $\eta : S \nat T$ is a natural transformation, as desired.
+\end{solution}
+
+\begin{exercise} % 5
+  Show that every natural transformation $\tau : S \nat T$ defines a function (also called $\tau$) which sends each arrow $f : c \to c'$ of $C$ to an arrow $\tau f : S c \to T' c$ of $B$ in such a way that $T g \circ \tau f = \tau (g \, f) = \tau g \circ S f$ for all composable pair $\left\langle g, f \right\rangle$.
+  Conversely, show that every such function $\tau$ comes from a unique natural transformation with $\tau_c = \tau(1_c)$.
+  (This gives an ``arrows only'' description of a natural transformation.)
+\end{exercise}
+\begin{solution}
+  Define the function $\tau$ on arrows as $\tau f = \tau_{c'} \circ S f = T f \circ \tau_c$ for each arrow $f : c \to c'$ in $C$ -- the equality follows from the naturality of $\tau$.
+  Then, for each composable pair $\left\langle g, f \right\rangle$ in $C$, we have:
+  \[ T \, g \circ \tau \, f = T \, g \circ T \, f \circ \tau_{c''} = T \, (g \circ f) \circ \tau_{c''} = \tau (g \, f) = \tau_{c'} \circ S \, (g \circ f) = \tau_{c'} \circ S \, g \circ S \, f = \tau \, g \circ S \, f. \]
+
+  Conversely, let $\tau$ be a function on arrows satisfying the given condition.
+  Define the components of the natural transformation $\tau : S \nat T$ as $\tau_c = \tau(1_c)$ for each object $c$ in $C$.
+  Then, for each arrow $f : c \to c'$ in $C$, we have:
+  \[ T \, f \circ \tau_c = T \, f \circ \tau(1_c) = \tau(f) = \tau(1_{c'}) \circ S \, f = \tau_{c'} \circ S \, f, \]
+  which makes the following diagram commute:
+  \begin{cd}
+    S c \ar[r, "\tau_c"] \ar[d, swap, "S f"] \& T c \ar[d, "T f"] \\
+    S c' \ar[r, "\tau_{c'}"] \& T c'
+  \end{cd}
+  Therefore, $\tau : S \nat T$ is a natural transformation, as desired.
+\end{solution}
+
+\begin{exercise} % 6
+  Let $F$ be a field. Show that the category of all finite-dimensional vector spaces over $F$ (with morphisms all linear transformations) is equivalent to the category $\Matr{F}$ described in \S2.
+\end{exercise}
+\begin{solution}
+  An $n$-dimensional vector space corresponds to the object $n$ in $\Matr{F}$.
+  For each finite dimensional vector space $V$ over $F$, let $\dim V$ denote its dimension, and choose a basis for $V$ over $F$.
+  Then, for each linear transformation $T : V \to W$ between finite-dimensional vector spaces $V$ and $W$, we can represent $T$ as a matrix with respect to the chosen bases of $V$ and $W$.
+  This matrix is of size $\dim W \times \dim V$, which corresponds to a morphism from $\dim V$ to $\dim W$ in $\Matr{F}$.
+  Thus, we can define a functor $G$ from the category of finite-dimensional vector spaces over $F$ to $\Matr{F}$ by sending each vector space $V$ to its dimension $\dim V$, and each linear transformation $T : V \to W$ to its corresponding matrix representation.
+  Conversely, for each object $n$ in $\Matr{F}$, we can associate it with the vector space $F^n$, and for each morphism represented by a matrix $A : n \to m$, we can associate it with the linear transformation $T_A : F^n \to F^m$ defined by $T_A(x) = A x$.
+  This defines a functor $H$ from $\Matr{F}$ to the category of finite-dimensional vector spaces over $F$.
+  It is straightforward to check that the compositions $G \circ H$ and $H \circ G$ are naturally isomorphic to the identity functors on their respective categories.
+  Therefore, the category of finite-dimensional vector spaces over $F$ is equivalent to the category $\Matr{F}$, as desired.
+\end{solution}
+
+\section{Monics, Epis, and Zeros} % Section 5.
+
+\begin{exercise} % 1
+  Find a category with an arrow which is both epi and monic, but not invertible (e.g., dense subset of a topological space).
+\end{exercise}
+\begin{solution}
+  $\mathbf{2}$, the category with two objects $0$ and $1$ and a single non-identity arrow $\downarrow : 0 \to 1$, serves as an example.
+  In this category, the arrow $\downarrow$ is both monic and epi.
+  To see that $\downarrow$ is monic, consider any two arrows $f, g : a \to 0$ such that $\downarrow \circ f = \downarrow \circ g$.
+  Since there is only one arrow to $0$, we have $f = g$.
+  To see that $\downarrow$ is epi, consider any two arrows $f, g : 1 \to b$ such that $f \circ \downarrow = g \circ \downarrow$.
+  Since there is only one arrow from $1$, we have $f = g$.
+  However, $\downarrow$ is not invertible since there is no arrow from $1$ to $0$.
+  Thus, $\downarrow$ is an example of an arrow that is both epi and monic, but not invertible.
+\end{solution}
+
+\begin{exercise} % 2
+  Prove that the composite of monics is monic, and likewise for epis.
+\end{exercise}
+\begin{solution}
+  Say $f : a \to b$ and $g : b \to c$ are monic arrows in a category $C$.
+  To show that the composite $g \circ f : a \to c$ is monic, consider any two arrows $h_1, h_2 : d \to a$ such that $(g \circ f) \circ h_1 = (g \circ f) \circ h_2$.
+  Then, we have $g \circ (f \circ h_1) = g \circ (f \circ h_2)$.
+  Since $g$ is monic, it follows that $f \circ h_1 = f \circ h_2$.
+  Since $f$ is also monic, we conclude that $h_1 = h_2$.
+  Therefore, $g \circ f$ is monic.
+
+  The proof for epis is exactly identical, but with the arrows reversed.
+\end{solution}
+
+\begin{exercise} % 3
+  If a composite $g \circ f$ is monic, so is $f$. Is this true of $g$?
+\end{exercise}
+\begin{solution}
+  Say $g \circ f : a \to c$ is monic.
+  To show that $f : a \to b$ is monic, consider any two arrows $h_1, h_2 : d \to a$ such that $f \circ h_1 = f \circ h_2$.
+  Then, we have $g \circ (f \circ h_1) = g \circ (f \circ h_2)$, which implies that $(g \circ f) \circ h_1 = (g \circ f) \circ h_2$.
+  Since $g \circ f$ is monic, it follows that $h_1 = h_2$.
+  Therefore, $f$ is monic.
+
+  However, this is not necessarily true for $g$.
+  For example, consider the set-functions $f : \{1\} \to \{1, 2\}$ defined by $f(1) = 1$, and $g : \{1, 2\} \to \{1\}$ defined by $- \mapsto 1$.
+  Then the composite $g \circ f : \{1\} \to \{1\}$ is the identity function, which is monic.
+  However, $g$ is not monic since $g \circ f = g \circ f'$ where $f' : \{1\} \to \{1, 2\}$ is defined by $f'(1) = 2$.
+  Thus, $g$ is not monic even though $g \circ f$ is monic.
+\end{solution}
+
+\begin{exercise} % 4
+  Show that the inclusion $\mathbf{Z} \to \mathbf{Q}$ is epi in the category $\Rng$.
+\end{exercise}
+\begin{solution}
+  Say $\iota : \mathbf{Z} \to \mathbf{Q}$ is the inclusion and $f,g : \mathbf{Q} \to R$ are ring homomorphisms, such that $f \circ \iota = g \circ \iota$.
+  Then $f(n) = g(n)$ for any integers $n$.
+  Since $f(1) = f\left(n \cdot \frac{1}{n}\right) = f(n) f\left(\frac{1}{n}\right)$, $f(n)$ is invertible in $R$ for any nonzero integer $n$, and $f\left(\frac{1}{n}\right) = f(n)^{-1}$.
+  The same applies to $g$.
+  Thus, for any rational number $\frac{m}{n}$, we have
+  \[ f\left(\frac{m}{n}\right) = f(m) f\left(\frac{1}{n}\right) = f(m) f(n)^{-1} = g(m) g(n)^{-1} = g\left(\frac{m}{n}\right). \]
+  Therefore, $f = g$, and $\iota$ is epi in $\Rng$.
+\end{solution}
+
+\begin{exercise} % 5
+  In $\Grp$ prove that every epi is surjective (Hint.
+    If $\varphi : G \to H$ has image $M$ not $H$, use the factor group $H/M$ if $M$ has index $2$.
+    Otherwise, let $\operatorname{Perm} H$ be the group of all permutations of the set $H$, choose three different cosets $M$, $Mu$ and $Mv$ of $M$, define $\sigma \in \operatorname{Perm} H$ by $\sigma(xu) = xv$, $\sigma(xv) = xu$ for $x \in M$, and $\sigma$ otherwise the identity.
+    Let $\psi : H \to \operatorname{Perm} H$ send each $h$ to left multiplication $\psi_h$ by $h$, while $\psi'_h = \sigma^{-1} \psi_h \sigma$.
+    Then $\psi\varphi = \psi'\varphi$, but $\psi \neq \psi'$
+  ).
+\end{exercise}
+\begin{solution}
+  Let $\varphi : G \to H$ be an epi in $\Grp$.
+  Suppose, for the sake of contradiction, that $\varphi$ is not surjective.
+  Let $M = \varphi(G)$ be the image of $\varphi$, which is a proper subgroup of $H$.
+
+  If $M$ has the index $2$ in $H$, then the quotient group $H/M$ has two elements.
+  Define the homomorphism $\psi : H \to H/M$ as the natural projection.
+  Then, we have $\psi \circ \varphi : G \to H/M$ is the trivial homomorphism.
+  By defining another homomorphism $\psi' : H \to H/M$ as the trivial homomorphism, we have $\psi \circ \varphi = \psi' \circ \varphi$, but $\psi \neq \psi'$, contradicting the assumption that $\varphi$ is epi.
+
+  For otherwise, i.e., if $M$ has an index greater than $2$, we can use the permutation representation as hinted.
+  Define $\sigma \in \operatorname{Perm} H$ by swapping two distinct cosets of $M$ and fixing all other elements.
+  Define $\psi : H \to \operatorname{Perm} H$ by left multiplication, and define $\psi' : H \to \operatorname{Perm} H$ by conjugating with $\sigma$.
+  Then, we have $\psi \circ \varphi = \psi' \circ \varphi$, but $\psi \neq \psi'$, again contradicting the assumption that $\varphi$ is epi.
+
+  Therefore, our assumption that $\varphi$ is not surjective must be false.
+  Hence, every epi in $\Grp$ is surjective.
+\end{solution}
+
+\begin{exercise} % 6
+  In $\Set$, show that all idempotents split.
+\end{exercise}
+\begin{solution}
+  Let $f : X \to X$ be an idempotent set-function.
+  Define $\alpha : X \to f(X)$ as $\alpha(x) = f(x)$ for each $x \in X$, and define $\beta : f(X) \to X$ as the inclusion map.
+  Then, for each $x \in X$, we have $\beta(\alpha(x)) = \beta(f(x)) = f(x)$, which implies that $\beta \circ \alpha = f$.
+  Moreover, for each $y \in f(X)$, there exists $x \in X$ such that $f(x) = y$, and thus $f(y) = f(f(x)) = f(x) = y$.
+  This immediately implies that $\alpha \circ \beta = 1_{f(X)}$ since $\alpha(\beta(y)) = \alpha(y) = f(y) = y$.
+  Therefore, $f$ splits as desired.
+\end{solution}
+
+\begin{exercise} % 7
+  An arrow $f : a \to b$ in a category $C$ is \emph{regular} when there exists an arrow $g : b \to a$ such that $f \, g \, f = f$.
+  Show that $f$ is regular if it has either a left or a right inverse, and prove that every arrow in $\Set$ with $a \neq \emptyset$ is regular.
+\end{exercise}
+\begin{solution}
+  The first part is straightforward.
+  If $f$ has a left inverse $g : b \to a$, then $g \circ f = 1_a$, and thus $f \circ g \circ f = f \circ 1_a = f$.
+  If $f$ has a right inverse $h : b \to a$, then $f \circ h = 1_b$, and thus $f \circ h \circ f = 1_b \circ f = f$.
+
+  For the second part, let $f : a \to b$ be a set-function with $a \neq \emptyset$.
+  Choose an element $x_0 \in a$.
+  Define the function $g : b \to a$ as follows:
+  \[ g(y) = \begin{cases}
+    x, & \text{if there exists }x \in a \text{ such that } f(x) = y; \\
+    x_0, & \text{otherwise}.
+  \end{cases} \]
+  Then, for each $x \in a$, $g(f(x)) = x$ by the definition of $g$, which implies that $f(g(f(x))) = f(x)$.
+  Therefore, we have $f \circ g \circ f = f$, and thus $f$ is regular, as desired.
+\end{solution}
+
+\begin{exercise} % 8
+  Consider the category with objects $\left\langle X, e, t \right\rangle$, where $X$ is a set, $e \in X$, and $t : X \to X$, and with arrows $f : \left\langle X, e, t \right\rangle \to \left\langle X', e', t' \right\rangle$ the functions $f$ on $X$ to $X'$ with $f \, e = e'$ and $f \, t = t' \, f$.
+  Prove that this category has an initial object in which $X$ is the set of natural numbers, $e = 0$, and $t$ is the successor function.
+\end{exercise}
+\begin{solution}
+  Let $\left\langle X, e, t \right\rangle$ be an object in the given category.
+  Defining $f : \mathbb{N} \to X$ as $f(n) = t^n(e)$ for each natural number $n$, where $t^n$ denotes the $n$-th iterate of $t$ (with $t^0$ being the identity function), we have:
+  \begin{itemize}
+    \item $f(0) = t^0(e) = e$, so $f \, 0 = e$;
+    \item for each natural number $n$, $f(n+1) = t^{n+1}(e) = t(t^n(e)) = t(f(n))$, so $f \circ (- + 1) = t \, f$.
+  \end{itemize}
+  Hence, $f : \left\langle \mathbb{N}, 0, (- + 1) \right\rangle \to \left\langle X, e, t \right\rangle$ is an arrow in the category.
+  Moreover, for any other arrow $g : \left\langle \mathbb{N}, 0, (- + 1) \right\rangle \to \left\langle X, e, t \right\rangle$, we can show by induction on $n$ that $g(n) = f(n)$ for each natural number $n$.
+  Therefore, $f$ is the unique arrow from the object $\left\langle \mathbb{N}, 0, (- + 1) \right\rangle$ to an object $\left\langle X, e, t \right\rangle$ in the given category, proving that $\left\langle \mathbb{N}, 0, (- + 1) \right\rangle$ is an initial object in the category.
+\end{solution}
+
+\begin{exercise} % 9
+  If the functor $T : C \to B$ is faithful and $T f$ is monic, prove $f$ monic.
+\end{exercise}
+\begin{solution}
+  Say $f \circ \alpha = f \circ \beta$ for some arrows $\alpha$ and $\beta$ of $C$.
+  Then $\alpha$ and $\beta$ are parallel arrows so it suffices to show that $T \, \alpha = T \, \beta$.
+  Since $T$ is a functor, we have $T \, (f \circ \alpha) = T \, f \circ T \, \alpha$ and $T \, (f \circ \beta) = T \, f \circ T \, \beta$.
+  Thus, we have $T \, f \circ T \, \alpha = T \, f \circ T \, \beta$, and it follows that $T \, \alpha = T \, \beta$ since $T \, f$ is monic.
+  Since $T$ is faithful, we conclude that $\alpha = \beta$, and therefore $f$ is monic, as desired.
+\end{solution}
+
+\section{Foundations} % Section 6.
+
+\begin{exercise} % 1
+  Given a universe $U$ and a function $f : I \to b$ with domain $I \in U$ and with every value $f_i$ an element of $U$, for $i \in I$, prove that the usual cartesian product $\prod_i f_i$ is an element of $U$.
+\end{exercise}
+
+\begin{exercise} % 2
+  (a) Given a universe $U$ and a function $f : I \to b$ with domain $I \in U$, show that the usual union $\bigcup_i f_i$ is a set of $U$.
+
+  (b) Show that this one closure property of $U$ may replace condition (v) and the condition $x \in U$ implies $\bigcup x \in U$ in the definition of a universe.
+\end{exercise}
