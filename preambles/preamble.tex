@@ -89,5 +89,11 @@
 \binoppenalty=10000%                  Prevent line breaks after binary operators (e.g. +, -, etc.)
 \relpenalty=10000%                    Prevent line breaks after relational operators (e.g. =, <, >, etc.)
 \setlength{\emergencystretch}{3em}%   Allow LaTeX to stretch lines a bit more to avoid overfull hboxes
+\setlist[itemize]{leftmargin=*}%      Set itemize environment left margin globally
+\setlist[enumerate]{%                 Set enumerate environment layout globally
+  leftmargin=*,%      left margin
+  labelsep=0.5em,%    space between label and item body
+  align=left%         align label to left
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
