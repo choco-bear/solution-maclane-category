@@ -88,6 +88,21 @@
 \begin{exercise} % 4
   For functors $S,T : C \to P$ where $C$ is a category and $P$ a preorder, show that there is a natural transformation $S \nat T$ (which is then unique) if and only if $S c \leqq T c$ for every object $c \in C$.
 \end{exercise}
+\begin{solution}
+  Say $\eta : S \nat T$ is a natural transformation.
+  Then, for each object $c \in C$, $\eta_c : S c \to T c$ gives us $S c \leqq T c$ in $P$.
+
+  Conversely, assume that $S c \leqq T c$ for each object $c \in C$.
+  Then, for each object $c \in C$, there exists a unique arrow $\eta_c : S c \to T c$ in $P$.
+  Hence, it suffices to show that for each arrow $f : c \to c'$ in $C$, the following diagram commutes:
+  \begin{cd}
+    S c \ar[r, "\eta_c"] \ar[d, swap, "S f"] \& T c \ar[d, "T f"] \\
+    S c' \ar[r, "\eta_{c'}"] \& T c'
+  \end{cd}
+  Since $P$ is a preorder, there is at most one arrow between any two objects.
+  Hence, the diagram commutes, as both paths represent the unique arrow from $S c$ to $T c'$ in the preorder $P$.
+  Therefore, $\eta : S \nat T$ is a natural transformation, as desired.
+\end{solution}
 
 \begin{exercise} % 5
   Show that every natural transformation $\tau : S \nat T$ Tdefines a function (also called $\tau$) which sends each arrow $f : c \to c'$ of $C$ to an arrow $\tau f : S c \to T' c$ of $B$ in such a way that $T g \circ \tau f = \tau (g \, f) = \tau g \circ S f$ for all composable pair $\left\langle g, f \right\rangle$.
