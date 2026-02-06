@@ -129,6 +129,17 @@
 \begin{exercise} % 6
   Let $F$ be a field. Show that the category of all finite-dimensional vector spaces over $F$ (with morphisms all linear transformations) is equivalent to the category $\Matr{F}$ described in \S2.
 \end{exercise}
+\begin{solution}
+  An $n$-dimensional vector space corresponds to the object $n$ in $\Matr{F}$.
+  For each finite dimensional vector space $V$ over $F$, let $\dim V$ denote its dimension, and choose a basis for $V$ over $F$.
+  Then, for each linear transformation $T : V \to W$ between finite-dimensional vector spaces $V$ and $W$, we can represent $T$ as a matrix with respect to the chosen bases of $V$ and $W$.
+  This matrix is of size $\dim W \times \dim V$, which corresponds to a morphism from $\dim V$ to $\dim W$ in $\Matr{F}$.
+  Thus, we can define a functor $G$ from the category of finite-dimensional vector spaces over $F$ to $\Matr{F}$ by sending each vector space $V$ to its dimension $\dim V$, and each linear transformation $T : V \to W$ to its corresponding matrix representation.
+  Conversely, for each object $n$ in $\Matr{F}$, we can associate it with the vector space $F^n$, and for each morphism represented by a matrix $A : n \to m$, we can associate it with the linear transformation $T_A : F^n \to F^m$ defined by $T_A(x) = A x$.
+  This defines a functor $H$ from $\Matr{F}$ to the category of finite-dimensional vector spaces over $F$.
+  It is straightforward to check that the compositions $G \circ H$ and $H \circ G$ are naturally isomorphic to the identity functors on their respective categories.
+  Therefore, the category of finite-dimensional vector spaces over $F$ is equivalent to the category $\Matr{F}$, as desired.
+\end{solution}
 
 \section{Monics, Epis, and Zeros} % Section 5.
 
