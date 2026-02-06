@@ -32,6 +32,7 @@
 \usepackage{textcomp}
 \usepackage{gensymb}
 \usepackage{titlesec}
+\usepackage{tocloft}
 
 \tikzcdset{
   shorten >= 2pt,
@@ -67,12 +68,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewcommand{\thechapter}{\Roman{chapter}}
-\renewcommand{\thesection}{\arabic{section}}
-\titleformat{\section}
-  {\normalfont\Large\bfseries} % Format of the title
-  {\thesection.}               % Section head spec
-  {2mm}                        % Distance between the number and the title (empty = no space)
-  {}                           % Code added before the title (empty = none)
+\renewcommand{\thesection}{\arabic{section}.}
+\titleformat{\section}%           Command to format (section, subsection, etc.)
+  {\normalfont\Large\bfseries}%   Format of the title
+  {\thesection}%                  Section head spec
+  {2mm}%                          Distance between the number and the title (empty = no space)
+  {}%                             Code added before the title (empty = none)
+\hypersetup{%                     hyperref package settings
+    bookmarksnumbered=true,%      bookmarks show section numbers
+    bookmarksopen=true,%          open bookmarks tree
+    bookmarksdepth=2%             bookmarks depth (0: part, 1: chapter, 2: section, 3: subsection, etc.)
+}
+\renewcommand{\cftchapaftersnum}{.}%  Chapter number followed by a dot in TOC
+\pdfstringdefDisableCommands{%        Disable commands for PDF bookmarks
+  \def\thechapter{\Roman{chapter}.}%  Chapter number with a dot in bookmarks
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
