@@ -8,10 +8,43 @@
 
   The field of quotients of an integral domain; the Lie algebra of a Lie group.
 \end{exercise}
+\begin{solution}
+  For any integral domain $R$, define $F(R)$ as the field of fractions of $R$.
+  For any ring homomorphism $f: R \to S$ between integral domains, define $F(f): F(R) \to F(S)$ as $\frac{a}{b} \mapsto \frac{f(a)}{f(b)}$ for $a, b \in R$ with $b \neq 0$.
+  This construction preserves composition and identities, thus defining a functor from the category of integral domains to the category of fields.
+
+  For any Lie group $G$, define $\mathrm{Lie}(G)$ as the Lie algebra of $G$.
+  For any Lie group homomorphism $\phi : G \to H$, define $\mathrm{Lie}(\phi) : \mathrm{Lie}(G) \to \mathrm{Lie}(H)$ as the differential of $\phi$ at the identity element.
+  This construction also preserves composition and identities, thus defining a functor from the category of Lie groups to the category of Lie algebras.
+\end{solution}
 
 \begin{exercise} % 2
   Show that functors $\mathbf{1} \to C$, $\mathbf{2} \to C$, and $\mathbf{3} \to C$ correspond respectively to objects, arrows, and composable pairs of arrows in $C$.
 \end{exercise}
+\begin{solution}
+  \begin{enumerate}[label=(\arabic*)]
+    \item The category $\mathbf{1}$ has a single object $0$ and only the identity $1_0$.
+      The following give us a bijective correspondence between the functors $\mathbf{1} \to C$ and the objects in $C$:
+      \begin{itemize}
+        \item Each functor $F : \mathbf{1} \to C$ defines an object $F(0)$ in $C$.
+        \item Each object $c$ in $C$ defines a functor $F : \mathbf{1} \to C$ by setting $F(0) = c$.
+      \end{itemize}
+
+    \item The category $\mathbf{2}$ has two objects $0$ and $1$, and three arrows: the identities $1_0$ and $1_1$, and the single non-identity arrow $\downarrow : 0 \to 1$.
+      The following give us a bijective correspondence between the functors $\mathbf{2} \to C$ and the arrows in $C$:
+      \begin{itemize}
+        \item Each functor $F : \mathbf{2} \to C$ defines an arrow $F(\downarrow) : F(0) \to F(1)$ in $C$.
+        \item Each arrow $f : c \to c'$ in $C$ defines a functor $F : \mathbf{2} \to C$ by setting $F(0) = c$, $F(1) = c'$, and $F(\downarrow) = f$.
+      \end{itemize}
+
+    \item The category $\mathbf{3}$ has three objects $0$, $1$, and $2$, and six arrows: the identities $1_0$, $1_1$ and $1_2$, and the three non-identity arrows $\downarrow_1 : 0 \to 1$, $\downarrow_2 : 1 \to 2$, and their composite $\downarrow_2 \circ \downarrow_1 : 0 \to 2$.
+      The following give us a bijective correspondence between the functors $\mathbf{3} \to C$ and the composable pairs of arrows in $C$:
+      \begin{itemize}
+        \item Each functor $F : \mathbf{3} \to C$ defines a composable pair of arrows $F(\downarrow_1) : F(0) \to F(1)$ and $F(\downarrow_2) : F(1) \to F(2)$ in $C$.
+        \item Each composable pair of arrows $f : c \to c'$ and $g : c' \to c''$ in $C$ defines a functor $F : \mathbf{3} \to C$ by setting $F(0) = c$, $F(1) = c'$, $F(2) = c''$, $F(\downarrow_1) = f$, and $F(\downarrow_2) = g$.
+      \end{itemize}
+  \end{enumerate}
+\end{solution}
 
 \begin{exercise} % 3
   Interpret ``functor'' in the following special types of categories:
@@ -19,14 +52,49 @@
   (b) A functor between two groups (one-object categories) is a morphism of groups.
   (c) If $G$ is a group, a functor $G \to \Set$ is a permutation representation of $G$, while $G \to \Matr{K}$ is a matrix representation of $G$.
 \end{exercise}
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item
+      Since a preorder can be viewed as a category where there is at most one morphism between any two objects, a functor $F : P \to Q$ between two preorders $P$ and $Q$ assigns to each object $p \in P$ an object $F(p) \in Q$, and to each morphism $p \leqq p'$ in $P$ a morphism $F(p) \leqq F(p')$ in $Q$.
+      This means that if $p \leqq p'$, then $F(p) \leqq F(p')$, which is precisely the definition of a monotonic function.
+
+    \item
+      A group can be viewed as a category with a single object where all morphisms are invertible.
+      A functor $F : G \to H$ between two groups $G$ and $H$ assigns the single object of $G$ to the single object of $H$, and each morphism (i.e., group element) $g \in G$ to a morphism (i.e., group element) $F(g) \in H$.
+      The functoriality conditions ensure that $F$ preserves the group operation and the identity element, making $F$ a group homomorphism.
+
+    \item
+      A functor $F : G \to \Set$ from a group $G$ to the category of sets assigns the single object of $G$ to a set $X$, and each group element $g \in G$ to a bijection $F(g) : X \to X$.
+      The functoriality conditions ensure that $F(gh) = F(g) \circ F(h)$ for all group elements (i.e., morphisms) $g, h$ of $G$, and $F(e) = \mathrm{id}_X$, where $e$ is the identity element of $G$.
+      This is precisely the definition of a permutation representation of the group $G$ on the set $X$.
+  \end{enumerate}
+\end{solution}
 
 \begin{exercise} % 4
   Prove that there is no functor $\Grp \to \Ab$ sending each group to its center (consider $S_2 \to S_3 \to S_2$, the symmetric groups).
 \end{exercise}
+\begin{solution}
+  Suppose not, i.e., there exists a functor $Z : \Grp \to \Ab$ sending each group to its center.
+  Define $f : S_2 \to S_3$ as $f (1 \, 2) = (1 \, 2)$, and define $g : S_3 \to S_2$ as $g(\sigma) = (1 \, 2)^{\operatorname{sgn} (\sigma)}$ for each $\sigma \in S_3$, where $\operatorname{sgn} (\sigma)$ is the sign of the permutation $\sigma$.
+  Then, we have $g \circ f = 1_{S_2}$, by a simple calculation.
+
+  Applying the functor $Z$, we have $Z(g) \circ Z(f) = Z(1_{S_2}) = 1_{Z(S_2)}$.
+  However, since the center of $S_3$ is trivial, $Z(f)$ maps everything to the identity element of $Z(S_3)$, making $Z(g) \circ Z(f)$ also the trivial map.
+  This contradicts the fact that $Z(g) \circ Z(f) = 1_{Z(S_2)}$.
+  Therefore, such a functor cannot exist.
+\end{solution}
 
 \begin{exercise} % 5
   Find two different functors $T : \Grp \to \Grp$ with object function $T(G) = G$ the identity for every group $G$.
 \end{exercise}
+\begin{solution}
+  Say $\varphi : C_3 \to C_3$ is defined as $[n] \mapsto [2n]$.
+  $\varphi$ is then an involutive automorphism of $C_3$.
+  Define $T(f) = [\varphi \circ] f [\circ \varphi]$, where $[\varphi \circ]$ and $[\circ \varphi]$ denote composition only when they are composable.
+  Then $T$ is a functor $\Grp \to \Grp$ with object function the identity.
+  However, $T$ is different from the identity functor since $T(f) \neq f$ where $f : C_3 \to C_6$ is defined as $[n] \mapsto [2n]$.
+  Therefore, we have found two different functors with the same object function.
+\end{solution}
 
 \section{Natural Transformations} % Section 4.
 
