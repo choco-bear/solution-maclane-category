@@ -52,6 +52,23 @@
   (b) A functor between two groups (one-object categories) is a morphism of groups.
   (c) If $G$ is a group, a functor $G \to \Set$ is a permutation representation of $G$, while $G \to \Matr{K}$ is a matrix representation of $G$.
 \end{exercise}
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item
+      Since a preorder can be viewed as a category where there is at most one morphism between any two objects, a functor $F : P \to Q$ between two preorders $P$ and $Q$ assigns to each object $p \in P$ an object $F(p) \in Q$, and to each morphism $p \leqq p'$ in $P$ a morphism $F(p) \leqq F(p')$ in $Q$.
+      This means that if $p \leqq p'$, then $F(p) \leqq F(p')$, which is precisely the definition of a monotonic function.
+
+    \item
+      A group can be viewed as a category with a single object where all morphisms are invertible.
+      A functor $F : G \to H$ between two groups $G$ and $H$ assigns the single object of $G$ to the single object of $H$, and each morphism (i.e., group element) $g \in G$ to a morphism (i.e., group element) $F(g) \in H$.
+      The functoriality conditions ensure that $F$ preserves the group operation and the identity element, making $F$ a group homomorphism.
+
+    \item
+      A functor $F : G \to \Set$ from a group $G$ to the category of sets assigns the single object of $G$ to a set $X$, and each group element $g \in G$ to a bijection $F(g) : X \to X$.
+      The functoriality conditions ensure that $F(gh) = F(g) \circ F(h)$ for all group elements (i.e., morphisms) $g, h$ of $G$, and $F(e) = \mathrm{id}_X$, where $e$ is the identity element of $G$.
+      This is precisely the definition of a permutation representation of the group $G$ on the set $X$.
+  \end{enumerate}
+\end{solution}
 
 \begin{exercise} % 4
   Prove that there is no functor $\Grp \to \Ab$ sending each group to its center (consider $S_2 \to S_3 \to S_2$, the symmetric groups).
