@@ -69,6 +69,21 @@
 \begin{exercise} % 3
   If $B$ and $C$ are groups (regarded as categories with one object each) and $S,T : B \to C$ are functors (homomorphisms or groups), show that there is a natural transformation $S \nat T$ if and only if $S$ and $T$ are conjugate; i.e., if and only if there is an element $h \in C$ with $Tg = h(Sg)h^{-1}$ for every $g \in B$.
 \end{exercise}
+\begin{solution}
+  Say $\eta : S \nat T$ is a natural transformation.
+  Then, by the naturality condition, for the unique object $\bullet$ of $B$, and for each group element $g \in B$, we have the following commutative diagram:
+  \begin{cd}
+    S \bullet \ar[r, "\eta_\bullet"] \ar[d, swap, "S g"] \& T \bullet \ar[d, "T g"] \\
+    S \bullet \ar[r, "\eta_\bullet"] \& T \bullet
+  \end{cd}
+  Thus, we have $\eta_\bullet \cdot S g = T g \cdot \eta_\bullet$ for each $g \in B$, which implies that $T g = \eta_\bullet \cdot S \, g \cdot (\eta_\bullet)^{-1}$.
+  Hence, $S$ and $T$ are conjugate via the group element $\eta_\bullet \in C$.
+
+  Conversely, assume that $S$ and $T$ are conjugate via an element $h \in C$; i.e., $T \, g = h \cdot S \, g \cdot h^{-1}$ for each group element $g \in B$.
+  Define the morphism $\eta_\bullet : S \, \bullet \to T \, \bullet$ as $\eta_\bullet = h$, where $\bullet$ denotes the unique object of $B$.
+  Then, for each group element $g \in B$, we have $T \, g \cdot h = h \cdot S \, g$, which implies the naturality condition for $\eta$.
+  Therefore, $\eta : S \nat T$ is a natural transformation, as desired.
+\end{solution}
 
 \begin{exercise} % 4
   For functors $S,T : C \to P$ where $C$ is a category and $P$ a preorder, show that there is a natural transformation $S \nat T$ (which is then unique) if and only if $S c \leqq T c$ for every object $c \in C$.
