@@ -299,6 +299,14 @@
 \begin{exercise} % 6
   In $\Set$, show that all idempotents split.
 \end{exercise}
+\begin{solution}
+  Let $f : X \to X$ be an idempotent set-function.
+  Define $\alpha : X \to f(X)$ as $\alpha(x) = f(x)$ for each $x \in X$, and define $\beta : f(X) \to X$ as the inclusion map.
+  Then, for each $x \in X$, we have $\beta(\alpha(x)) = \beta(f(x)) = f(x)$, which implies that $\beta \circ \alpha = f$.
+  Moreover, for each $y \in f(X)$, there exists $x \in X$ such that $f(x) = y$, and thus $f(y) = f(f(x)) = f(x) = y$.
+  This immediately implies that $\alpha \circ \beta = 1_{f(X)}$ since $\alpha(\beta(y)) = \alpha(y) = f(y) = y$.
+  Therefore, $f$ splits as desired.
+\end{solution}
 
 \begin{exercise} % 7
   An arrow $f : a \to b$ in a category $C$ is \emph{regular} when there exists an arrow $g : b \to a$ such that $f \, g \, f = f$.
