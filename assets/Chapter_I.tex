@@ -242,6 +242,19 @@
 \begin{exercise} % 3
   If a composite $g \circ f$ is monic, so is $f$. Is this true of $g$?
 \end{exercise}
+\begin{solution}
+  Say $g \circ f : a \to c$ is monic.
+  To show that $f : a \to b$ is monic, consider any two arrows $h_1, h_2 : d \to a$ such that $f \circ h_1 = f \circ h_2$.
+  Then, we have $g \circ (f \circ h_1) = g \circ (f \circ h_2)$, which implies that $(g \circ f) \circ h_1 = (g \circ f) \circ h_2$.
+  Since $g \circ f$ is monic, it follows that $h_1 = h_2$.
+  Therefore, $f$ is monic.
+
+  However, this is not necessarily true for $g$.
+  For example, consider the set-functions $f : \{1\} \to \{1, 2\}$ defined by $f(1) = 1$, and $g : \{1, 2\} \to \{1\}$ defined by $- \mapsto 1$.
+  Then the composite $g \circ f : \{1\} \to \{1\}$ is the identity function, which is monic.
+  However, $g$ is not monic since $g \circ f = g \circ f'$ where $f' : \{1\} \to \{1, 2\}$ is defined by $f'(1) = 2$.
+  Thus, $g$ is not monic even though $g \circ f$ is monic.
+\end{solution}
 
 \begin{exercise} % 4
   Show that the inclusion $\mathbf{Z} \to \mathbf{Q}$ is epi in the category $\Rng$.
