@@ -228,6 +228,16 @@
 \begin{exercise} % 2
   Prove that the composite of monics is monic, and likewise for epis.
 \end{exercise}
+\begin{solution}
+  Say $f : a \to b$ and $g : b \to c$ are monic arrows in a category $C$.
+  To show that the composite $g \circ f : a \to c$ is monic, consider any two arrows $h_1, h_2 : d \to a$ such that $(g \circ f) \circ h_1 = (g \circ f) \circ h_2$.
+  Then, we have $g \circ (f \circ h_1) = g \circ (f \circ h_2)$.
+  Since $g$ is monic, it follows that $f \circ h_1 = f \circ h_2$.
+  Since $f$ is also monic, we conclude that $h_1 = h_2$.
+  Therefore, $g \circ f$ is monic.
+
+  The proof for epis is exactly identical, but with the arrows reversed.
+\end{solution}
 
 \begin{exercise} % 3
   If a composite $g \circ f$ is monic, so is $f$. Is this true of $g$?
