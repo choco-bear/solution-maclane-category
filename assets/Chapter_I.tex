@@ -51,6 +51,20 @@
 \begin{exercise} % 2
   If $H$ is a fixed group, show that $G \mapsto H \times G$ defines a functor $H \times - : \Grp \to \Grp$, and that each morphism $f : H \to K$ of groups defines a natural transformation $H \times - \nat K \times -$.
 \end{exercise}
+\begin{solution}
+  For any group homomorphism $\varphi : G \to G'$, define $H \times \varphi : H \times G \to H \times G'$ by $(h, g) \mapsto (h, \varphi(g))$.
+  Then it is straightforward to check that this defines a functor $H \times - : \Grp \to \Grp$.
+
+  Next, for each group homomorphism $f : H \to K$, define the morphisms $\tilde{f}_G : H \times G \to K \times G$ as $\tilde{f}_G(h, g) = (f(h), g)$, for each group $G$.
+  Hence, it suffices to show that for each group homomorphism $\varphi : G \to G'$, the following diagram commutes:
+  \begin{cd}
+    H \times G \ar[r, "\tilde{f}_G"] \ar[d, swap, "H \times \varphi"] \& K \times G \ar[d, "K \times \varphi"] \\
+    H \times G' \ar[r, "\tilde{f}_{G'}"] \& K \times G'
+  \end{cd}
+  For each $(h, g) \in H \times G$, we have
+  \[ (K \times \varphi)(\tilde{f}_G(h, g)) = (K \times \varphi)(f(h), g) = (f(h), \varphi(g)) = \tilde{f}_{G'}(h, \varphi(g)) = \tilde{f}_{G'}((H \times \varphi)(h, g)). \]
+  Thus, the diagram commutes, and $\tilde{f} : H \times - \nat K \times -$ is a natural transformation, as desired.
+\end{solution}
 
 \begin{exercise} % 3
   If $B$ and $C$ are groups (regarded as categories with one object each) and $S,T : B \to C$ are functors (homomorphisms or groups), show that there is a natural transformation $S \nat T$ if and only if $S$ and $T$ are conjugate; i.e., if and only if there is an element $h \in C$ with $Tg = h(Sg)h^{-1}$ for every $g \in B$.
