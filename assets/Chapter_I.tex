@@ -21,6 +21,30 @@
 \begin{exercise} % 2
   Show that functors $\mathbf{1} \to C$, $\mathbf{2} \to C$, and $\mathbf{3} \to C$ correspond respectively to objects, arrows, and composable pairs of morphisms in $C$.
 \end{exercise}
+\begin{solution}
+  \begin{enumerate}[label=(\arabic*)]
+    \item The category $\mathbf{1}$ has a single object $0$ and only the identity $1_0$.
+      The following give us a bijective correspondence between the functors $\mathbf{1} \to C$ and the objects in $C$:
+      \begin{itemize}
+        \item Each functor $F : \mathbf{1} \to C$ defines an object $F(0)$ in $C$.
+        \item Each object $c$ in $C$ defines a functor $F : \mathbf{1} \to C$ by setting $F(0) = c$.
+      \end{itemize}
+
+    \item The category $\mathbf{2}$ has two objects $0$ and $1$, and three arrows: the identities $1_0$ and $1_1$, and the single non-identity arrow $\downarrow : 0 \to 1$.
+      The following give us a bijective correspondence between the functors $\mathbf{2} \to C$ and the arrows in $C$:
+      \begin{itemize}
+        \item Each functor $F : \mathbf{2} \to C$ defines an arrow $F(\downarrow) : F(0) \to F(1)$ in $C$.
+        \item Each arrow $f : c \to c'$ in $C$ defines a functor $F : \mathbf{2} \to C$ by setting $F(0) = c$, $F(1) = c'$, and $F(\downarrow) = f$.
+      \end{itemize}
+
+    \item The category $\mathbf{3}$ has three objects $0$, $1$, and $2$, and six arrows: the identities $1_0$, $1_1$ and $1_2$, and the three non-identity arrows $\downarrow_1 : 0 \to 1$, $\downarrow_2 : 1 \to 2$, and their composite $\downarrow_2 \circ \downarrow_1 : 0 \to 2$.
+      The following give us a bijective correspondence between the functors $\mathbf{3} \to C$ and the composable pairs of arrows in $C$:
+      \begin{itemize}
+        \item Each functor $F : \mathbf{3} \to C$ defines a composable pair of arrows $F(\downarrow_1) : F(0) \to F(1)$ and $F(\downarrow_2) : F(1) \to F(2)$ in $C$.
+        \item Each composable pair of arrows $f : c \to c'$ and $g : c' \to c''$ in $C$ defines a functor $F : \mathbf{3} \to C$ by setting $F(0) = c$, $F(1) = c'$, $F(2) = c''$, $F(\downarrow_1) = f$, and $F(\downarrow_2) = g$.
+      \end{itemize}
+  \end{enumerate}
+\end{solution}
 
 \begin{exercise} % 3
   Interpret ``functor'' in the following special types of categories:
